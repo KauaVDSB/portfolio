@@ -1,0 +1,370 @@
+/* ==========================================================================
+   DESIGN & PERSONALITY LAB (PAINEL INTERATIVO EM TEMPO REAL)
+   Permite ao Kauã testar paletas, modos de tema, cores personalizadas e easter eggs
+   ========================================================================== */
+
+/* Botão Flutuante Cheshire Lab */
+.lab-floating-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface-color);
+  color: var(--text-main);
+  border: 1.5px solid var(--accent-color);
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 30px var(--accent-glow), var(--shadow-md);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: all var(--transition-base);
+  backdrop-filter: blur(10px);
+}
+
+.lab-floating-trigger:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px var(--accent-glow), var(--shadow-lg);
+}
+
+.cheshire-smile-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: transform var(--transition-base);
+}
+
+.lab-floating-trigger:hover .cheshire-smile-icon {
+  transform: scale(1.2) rotate(-10deg);
+}
+
+/* Gaveta Lateral (Drawer) */
+.lab-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface-color);
+  border-left: 1px solid var(--border-color);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.25);
+  z-index: 1600;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  backdrop-filter: blur(16px);
+}
+
+.lab-drawer.open {
+  transform: translateX(0);
+}
+
+.lab-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1550;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.lab-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Header da Gaveta */
+.lab-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lab-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lab-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.lab-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.lab-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.lab-close-btn:hover {
+  background: var(--surface-alt);
+  color: var(--text-main);
+}
+
+/* Conteúdo da Gaveta */
+.lab-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lab-section-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Seletor de Modo Claro / Escuro / Sistema */
+.lab-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.lab-mode-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.lab-mode-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--text-main);
+}
+
+.lab-mode-btn.active {
+  background: var(--surface-color);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+.lab-mode-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Grid de Paletas Curadas */
+.lab-palette-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lab-palette-card {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-color);
+  background: var(--surface-color);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lab-palette-card:hover {
+  border-color: var(--accent-color);
+  transform: translateX(4px);
+}
+
+.lab-palette-card.active {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 1.5px var(--accent-color);
+  background: var(--surface-alt);
+}
+
+.palette-info h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.palette-info span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.palette-swatches {
+  display: flex;
+  gap: 5px;
+}
+
+.swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Color Pickers em Tempo Real */
+.lab-picker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.lab-picker-row label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.lab-color-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lab-color-input-wrapper input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: none;
+}
+
+.lab-color-input-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.lab-color-input-wrapper input[type="color"]::-webkit-color-swatch {
+  border: 1.5px solid var(--border-color);
+  border-radius: 50%;
+}
+
+.lab-color-val {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  width: 65px;
+}
+
+/* Modo Cheshire Toggle */
+.lab-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.toggle-label-group strong {
+  display: block;
+  font-size: 0.88rem;
+  margin-bottom: 2px;
+}
+
+.toggle-label-group span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--border-color);
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Footer da Gaveta */
+.lab-footer {
+  padding: 18px 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 10px;
+}
+
+.lab-reset-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+.lab-reset-btn:hover {
+  background: var(--surface-alt);
+  color: var(--text-main);
+}

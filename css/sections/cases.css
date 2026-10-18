@@ -1,0 +1,236 @@
+/* ==========================================================================
+   SEÇÃO CASES DE SUCESSO (OFTALMOPE TECH & PROJETOS REAIS)
+   Métricas auditadas, ROI tangível, arquitetura dos robôs e projetos públicos
+   ========================================================================== */
+
+.cases-section {
+  position: relative;
+}
+
+/* Card Principal do Case OftalmoPE */
+.case-featured-card {
+  background: var(--surface-color);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.8rem, 3.5vw, 3rem);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.case-featured-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+}
+
+.case-top-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.case-badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.case-badge-highlight {
+  background: var(--accent-glow);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.case-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  margin-bottom: 0.8rem;
+}
+
+.case-summary {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 820px;
+  margin-bottom: 2rem;
+}
+
+/* Grid de Métricas de ROI do Case */
+.case-roi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 2.5rem;
+}
+
+.case-roi-box {
+  background: var(--surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+}
+
+.case-roi-box:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.roi-num {
+  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.1;
+  font-family: var(--font-display);
+}
+
+.roi-num.gain {
+  color: #10b981;
+}
+
+.roi-num.accent {
+  color: var(--accent-color);
+}
+
+.roi-lbl {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 6px;
+}
+
+.roi-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Tabs / Switcher dos Robôs da OftalmoPE */
+.robots-showcase {
+  background: var(--surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.2rem, 2.5vw, 2rem);
+  margin-bottom: 2rem;
+}
+
+.robots-header {
+  margin-bottom: 1.5rem;
+}
+
+.robots-header h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.robots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.robot-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+}
+
+.robot-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.robot-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.robot-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+}
+
+.robot-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--accent-glow);
+  color: var(--accent-color);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.robot-desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.robot-speed {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  width: fit-content;
+}
+
+/* Grid dos Outros Cases (UFAPE Apadrinhamento, DouglasBlog) */
+.secondary-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.case-secondary-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-base);
+}
+
+.case-secondary-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.case-links-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 1.5rem;
+}

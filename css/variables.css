@@ -1,0 +1,211 @@
+/* ==========================================================================
+   DESIGN TOKENS & CSS VARIABLES
+   Suporte a Temas (Light / Dark / System) e Paletas de Cores Personalizáveis
+   ========================================================================== */
+
+:root {
+  /* Tipografia */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Transições e Curvas */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 0.18s var(--ease-out);
+  --transition-base: 0.28s var(--ease-out);
+  --transition-slow: 0.45s var(--ease-out);
+
+  /* Dimensões e Layout */
+  --container-max: 1200px;
+  --container-narrow: 860px;
+  --header-height: 72px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+
+  /* PALETA 1: EDITORIAL ELEGANTE (DEFAULT) - Sóbria, refinada e moderna */
+  --pal-editorial-bg-light: #f5f2ed;
+  --pal-editorial-surface-light: #ffffff;
+  --pal-editorial-border-light: rgba(28, 25, 23, 0.1);
+  --pal-editorial-text-light: #1c1917;
+  --pal-editorial-muted-light: #78716c;
+  --pal-editorial-accent-light: #0c6fa0;
+  --pal-editorial-accent-glow-light: rgba(12, 111, 160, 0.15);
+
+  --pal-editorial-bg-dark: #0e1117;
+  --pal-editorial-surface-dark: #161b22;
+  --pal-editorial-border-dark: rgba(255, 255, 255, 0.08);
+  --pal-editorial-text-dark: #f0f6fc;
+  --pal-editorial-muted-dark: #8b949e;
+  --pal-editorial-accent-dark: #38bdf8;
+  --pal-editorial-accent-glow-dark: rgba(56, 189, 248, 0.18);
+
+  /* PALETA 2: CHESHIRE WONDERLAND - Alter ego inusitado (Roxo místico & Laranja vibrante) */
+  --pal-cheshire-bg-light: #faf7fd;
+  --pal-cheshire-surface-light: #ffffff;
+  --pal-cheshire-border-light: rgba(139, 92, 246, 0.18);
+  --pal-cheshire-text-light: #201335;
+  --pal-cheshire-muted-light: #7c6f8a;
+  --pal-cheshire-accent-light: #7c3aed;
+  --pal-cheshire-accent-sec-light: #ea580c;
+  --pal-cheshire-accent-glow-light: rgba(124, 58, 237, 0.18);
+
+  --pal-cheshire-bg-dark: #0d0914;
+  --pal-cheshire-surface-dark: #171124;
+  --pal-cheshire-border-dark: rgba(167, 139, 250, 0.14);
+  --pal-cheshire-text-dark: #f5f3ff;
+  --pal-cheshire-muted-dark: #a78bfa;
+  --pal-cheshire-accent-dark: #a855f7;
+  --pal-cheshire-accent-sec-dark: #f97316;
+  --pal-cheshire-accent-glow-dark: rgba(168, 85, 247, 0.25);
+
+  /* PALETA 3: HEALTHTECH & SUS - OftalmoPE, robustez e precisão médica (Azul & Esmeralda) */
+  --pal-health-bg-light: #f4f9fc;
+  --pal-health-surface-light: #ffffff;
+  --pal-health-border-light: rgba(12, 111, 160, 0.14);
+  --pal-health-text-light: #092c3e;
+  --pal-health-muted-light: #486581;
+  --pal-health-accent-light: #0284c7;
+  --pal-health-accent-sec-light: #059669;
+  --pal-health-accent-glow-light: rgba(2, 132, 199, 0.15);
+
+  --pal-health-bg-dark: #040d14;
+  --pal-health-surface-dark: #0a1926;
+  --pal-health-border-dark: rgba(56, 189, 248, 0.12);
+  --pal-health-text-dark: #f0fdf4;
+  --pal-health-muted-dark: #7dd3fc;
+  --pal-health-accent-dark: #38bdf8;
+  --pal-health-accent-sec-dark: #10b981;
+  --pal-health-accent-glow-dark: rgba(56, 189, 248, 0.22);
+
+  /* PALETA 4: TONS TERROSOS & PASTÉIS - Orgânica, acolhedora e atemporal */
+  --pal-earthy-bg-light: #f2ede4;
+  --pal-earthy-surface-light: #fbf9f5;
+  --pal-earthy-border-light: rgba(120, 85, 60, 0.14);
+  --pal-earthy-text-light: #2c221e;
+  --pal-earthy-muted-light: #7c6a5e;
+  --pal-earthy-accent-light: #b45309;
+  --pal-earthy-accent-sec-light: #476655;
+  --pal-earthy-accent-glow-light: rgba(180, 83, 9, 0.14);
+
+  --pal-earthy-bg-dark: #16120e;
+  --pal-earthy-surface-dark: #221c17;
+  --pal-earthy-border-dark: rgba(217, 119, 6, 0.15);
+  --pal-earthy-text-dark: #fbf7ee;
+  --pal-earthy-muted-dark: #b89d89;
+  --pal-earthy-accent-dark: #f59e0b;
+  --pal-earthy-accent-sec-dark: #6ee7b7;
+  --pal-earthy-accent-glow-dark: rgba(245, 158, 11, 0.2);
+
+  /* ESTADO ATIVO PADRÃO: Editorial Claro */
+  --bg-color: var(--pal-editorial-bg-light);
+  --surface-color: var(--pal-editorial-surface-light);
+  --surface-alt: #f0ede8;
+  --border-color: var(--pal-editorial-border-light);
+  --text-main: var(--pal-editorial-text-light);
+  --text-muted: var(--pal-editorial-muted-light);
+  --accent-color: var(--pal-editorial-accent-light);
+  --accent-secondary: #059669;
+  --accent-glow: var(--pal-editorial-accent-glow-light);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* TEMA ESCURO (Dark Mode) */
+[data-theme="dark"] {
+  --bg-color: var(--pal-editorial-bg-dark);
+  --surface-color: var(--pal-editorial-surface-dark);
+  --surface-alt: #1a222d;
+  --border-color: var(--pal-editorial-border-dark);
+  --text-main: var(--pal-editorial-text-dark);
+  --text-muted: var(--pal-editorial-muted-dark);
+  --accent-color: var(--pal-editorial-accent-dark);
+  --accent-secondary: #10b981;
+  --accent-glow: var(--pal-editorial-accent-glow-dark);
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* PALETA CHESHIRE (Claro & Escuro) */
+[data-palette="cheshire"] {
+  --bg-color: var(--pal-cheshire-bg-light);
+  --surface-color: var(--pal-cheshire-surface-light);
+  --surface-alt: #f3edf8;
+  --border-color: var(--pal-cheshire-border-light);
+  --text-main: var(--pal-cheshire-text-light);
+  --text-muted: var(--pal-cheshire-muted-light);
+  --accent-color: var(--pal-cheshire-accent-light);
+  --accent-secondary: var(--pal-cheshire-accent-sec-light);
+  --accent-glow: var(--pal-cheshire-accent-glow-light);
+}
+
+[data-palette="cheshire"][data-theme="dark"] {
+  --bg-color: var(--pal-cheshire-bg-dark);
+  --surface-color: var(--pal-cheshire-surface-dark);
+  --surface-alt: #221834;
+  --border-color: var(--pal-cheshire-border-dark);
+  --text-main: var(--pal-cheshire-text-dark);
+  --text-muted: var(--pal-cheshire-muted-dark);
+  --accent-color: var(--pal-cheshire-accent-dark);
+  --accent-secondary: var(--pal-cheshire-accent-sec-dark);
+  --accent-glow: var(--pal-cheshire-accent-glow-dark);
+}
+
+/* PALETA HEALTHTECH (Claro & Escuro) */
+[data-palette="healthtech"] {
+  --bg-color: var(--pal-health-bg-light);
+  --surface-color: var(--pal-health-surface-light);
+  --surface-alt: #e9f2f7;
+  --border-color: var(--pal-health-border-light);
+  --text-main: var(--pal-health-text-light);
+  --text-muted: var(--pal-health-muted-light);
+  --accent-color: var(--pal-health-accent-light);
+  --accent-secondary: var(--pal-health-accent-sec-light);
+  --accent-glow: var(--pal-health-accent-glow-light);
+}
+
+[data-palette="healthtech"][data-theme="dark"] {
+  --bg-color: var(--pal-health-bg-dark);
+  --surface-color: var(--pal-health-surface-dark);
+  --surface-alt: #0e2233;
+  --border-color: var(--pal-health-border-dark);
+  --text-main: var(--pal-health-text-dark);
+  --text-muted: var(--pal-health-muted-dark);
+  --accent-color: var(--pal-health-accent-dark);
+  --accent-secondary: var(--pal-health-accent-sec-dark);
+  --accent-glow: var(--pal-health-accent-glow-dark);
+}
+
+/* PALETA TONS TERROSOS (Claro & Escuro) */
+[data-palette="earthy"] {
+  --bg-color: var(--pal-earthy-bg-light);
+  --surface-color: var(--pal-earthy-surface-light);
+  --surface-alt: #e8e0d4;
+  --border-color: var(--pal-earthy-border-light);
+  --text-main: var(--pal-earthy-text-light);
+  --text-muted: var(--pal-earthy-muted-light);
+  --accent-color: var(--pal-earthy-accent-light);
+  --accent-secondary: var(--pal-earthy-accent-sec-light);
+  --accent-glow: var(--pal-earthy-accent-glow-light);
+}
+
+[data-palette="earthy"][data-theme="dark"] {
+  --bg-color: var(--pal-earthy-bg-dark);
+  --surface-color: var(--pal-earthy-surface-dark);
+  --surface-alt: #2c231c;
+  --border-color: var(--pal-earthy-border-dark);
+  --text-main: var(--pal-earthy-text-dark);
+  --text-muted: var(--pal-earthy-muted-dark);
+  --accent-color: var(--pal-earthy-accent-dark);
+  --accent-secondary: var(--pal-earthy-accent-sec-dark);
+  --accent-glow: var(--pal-earthy-accent-glow-dark);
+}

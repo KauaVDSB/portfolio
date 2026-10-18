@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-palette="editorial">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kauã Barbosa • Engenheiro de Software & Automação Hospitalar</title>
+  <meta name="description" content="Portfólio & Currículo de Kauã Vinicius dos Santos Barbosa: Bacharelado em Ciência da Computação (UPE), criador da esteira OftalmoPE Tech e desenvolvedor de software de alto impacto.">
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Arquitetura Modular de Estilos CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/lab-theme-panel.css">
+  <link rel="stylesheet" href="css/sections/hero.css">
+  <link rel="stylesheet" href="css/sections/cases.css">
+</head>
+<body>
+
+  <!-- NAVBAR SUPERIOR FLUTUANTE -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="nav-brand" id="cheshireEasterEgg" title="Alter ego Cheshire: clique para uma surpresa">
+        <div class="brand-symbol">K</div>
+        <span>Kauã Barbosa<span style="color: var(--accent-color);">.</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#hero" class="nav-link active">Início</a>
+        <a href="#cases" class="nav-link">Cases de Impacto</a>
+        <a href="/cv.html" class="nav-link" target="_blank">Currículo Completo</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm" data-action="open-resume">
+          📄 Ver Currículo
+        </button>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ====================================================================
+         SEÇÃO 1: HERO SECTION
+         Apresentação, alter ego Cheshire, formação, monitoria e Big Numbers
+         ==================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-content">
+        
+        <div class="hero-meta-badge">
+          <span class="status-dot"></span>
+          <span>Disponível para novos desafios • Monitoria UPE & Dev</span>
+        </div>
+
+        <div class="hero-greeting">
+          <span>// olá, mundo! eu sou</span>
+        </div>
+
+        <h1 class="hero-title">
+          Kauã Barbosa<span class="cheshire-accent" title="O alter ego perspicaz do Cheshire Cat">^</span>
+          <br>
+          <span class="highlight-gradient">Criando tecnologia real com retorno real.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Estudante de <strong>Ciência da Computação na UPE</strong> (4º período, monitor desde o 2º) e <strong>Técnico em Desenvolvimento de Sistemas</strong> (ETE-AVS). Concepção e entrega de esteiras de automação de missão crítica no SUS — gerando mais de <strong>100 horas úteis salvas por mês</strong> e blindando mais de <strong>R$ 1,2 milhão</strong> em faturamento hospitalar.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#cases" class="btn btn-primary btn-lg">
+            ⚡ Explorar Cases & Métricas de ROI
+          </a>
+          <button class="btn btn-secondary btn-lg" data-action="open-resume">
+            📄 Baixar Currículo (PDF/Web)
+          </button>
+          <button class="btn btn-cheshire btn-lg" id="labTriggerHero">
+            🎨 Design Lab (Testar Paletas)
+          </button>
+        </div>
+
+        <!-- Big Numbers Grid do Hero -->
+        <div class="hero-stats-grid">
+          <div class="hero-stat-card">
+            <div class="stat-value accent">+100 h</div>
+            <div class="stat-label">Horas Úteis Salvas/Mês</div>
+            <div class="stat-subtext">> 12 dias de digitação braçal poupados</div>
+          </div>
+
+          <div class="hero-stat-card">
+            <div class="stat-value">130x</div>
+            <div class="stat-label">Aceleração de Baixas</div>
+            <div class="stat-subtext">De 85s para 0,65s por cirurgia no MV</div>
+          </div>
+
+          <div class="hero-stat-card">
+            <div class="stat-value accent">> R$ 1,2 Mi</div>
+            <div class="stat-label">Capital SUS Blindado</div>
+            <div class="stat-subtext">Proteção mensal contra glosas e atrasos</div>
+          </div>
+
+          <div class="hero-stat-card">
+            <div class="stat-value">4º / 13º</div>
+            <div class="stat-label">Aprovações UPE</div>
+            <div class="stat-subtext">Licenciatura (4º) e Bacharelado CC (13º)</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SEÇÃO 2: CASES DE IMPACTO REAL
+         OftalmoPE Tech (Robôs, Métricas, ROI) & Apadrinhamento UFAPE & DouglasBlog
+         ==================================================================== -->
+    <section class="section-spacing cases-section" id="cases">
+      <div class="container">
+        
+        <header class="section-header">
+          <div class="section-tag">Produtos Reais • Métricas Auditadas</div>
+          <h2 class="section-title">Cases de Impacto & Engenharia com ROI Tangível</h2>
+          <p class="section-desc">
+            Mais do que linhas de código: soluções concebidas para resolver dores operacionais concretas, testadas em ambiente real com retorno mensurável.
+          </p>
+        </header>
+
+        <!-- CASE PRINCIPAL: OFTALMOPE TECH & AXYMOS -->
+        <article class="case-featured-card">
+          
+          <div class="case-top-meta">
+            <div class="case-badge-group">
+              <span class="case-badge-highlight">🏥 Case de Sucesso em Produção</span>
+              <span class="tag-pill">Hospital de Olhos OftalmoPE (SUS)</span>
+              <span class="tag-pill">Axymos Tecnologia</span>
+              <span class="tag-pill">Zero PII em Nuvem (LGPD)</span>
+            </div>
+            <span class="status-pill"><span class="status-dot"></span> Esteira Ativa em Produção</span>
+          </div>
+
+          <h3 class="case-title">OftalmoPE Tech • Esteira RPA de Faturamento SUS & Governança</h3>
+          
+          <p class="case-summary">
+            Desenvolvido por iniciativa própria a partir da observação dos gargalos do hospital: a equipe realizava mais de 5.770 procedimentos manuais por mês, demandando 85s por cirurgia e gerando riscos crônicos de perda de prazos de remessa SES-PE e glosas. A esteira converteu dias de digitação em milissegundos auditados com governança local estrita via Sentinel Hub.
+          </p>
+
+          <!-- Grid de Métricas de ROI Auditadas -->
+          <div class="case-roi-grid">
+            <div class="case-roi-box">
+              <div class="roi-num gain">+100 h</div>
+              <div class="roi-lbl">Horas Úteis Salvas/Mês</div>
+              <div class="roi-sub">> 12 dias úteis de trabalho manual devolvidos à gestão</div>
+            </div>
+
+            <div class="case-roi-box">
+              <div class="roi-num accent">0,65s</div>
+              <div class="roi-lbl">FinalizaMV</div>
+              <div class="roi-sub">Baixa cirúrgica reduzida de 85s para menos de 1s (130x mais veloz)</div>
+            </div>
+
+            <div class="case-roi-box">
+              <div class="roi-num accent">1,10s</div>
+              <div class="roi-lbl">SolicitaAPAC</div>
+              <div class="roi-sub">Emissão integrada à SES-PE com validação prévia contra glosas</div>
+            </div>
+
+            <div class="case-roi-box">
+              <div class="roi-num gain">R$ 2.501,75</div>
+              <div class="roi-lbl">ROI Direto de Folha/Mês</div>
+              <div class="roi-sub">Base conservadora R$ 25/h (BPO mercado: R$ 6k a 9k/mês)</div>
+            </div>
+
+            <div class="case-roi-box">
+              <div class="roi-num">> R$ 1,2 Mi</div>
+              <div class="roi-lbl">Faturamento SUS Blindado</div>
+              <div class="roi-sub">Montante mensal protegido com integridade estrita de dados</div>
+            </div>
+          </div>
+
+          <!-- A Suíte de 4 Robôs + Sentinel Hub -->
+          <div class="robots-showcase">
+            <div class="robots-header">
+              <h4>A Suíte OftalmoPE Tech em Operação:</h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">Quatro robôs especializados cobrindo todo o ciclo cirúrgico, ambulatorial e laudos.</p>
+            </div>
+
+            <div class="robots-grid">
+              <div class="robot-card">
+                <div>
+                  <div class="robot-card-top">
+                    <span class="robot-name">FinalizaMV</span>
+                    <span class="robot-badge">Bloco Cirúrgico</span>
+                  </div>
+                  <p class="robot-desc">Processa 1.440 cirurgias/mês. Encerra e baixa guias no MV Soul instantaneamente, eliminando pilhas de papéis.</p>
+                </div>
+                <div class="robot-speed">⚡ 0,65s por cirurgia</div>
+              </div>
+
+              <div class="robot-card">
+                <div>
+                  <div class="robot-card-top">
+                    <span class="robot-name">SolicitaAPAC</span>
+                    <span class="robot-badge">SES-PE / Laudos</span>
+                  </div>
+                  <p class="robot-desc">Processa 1.315 laudos/mês. Integração direta e checagem de integridade cadastral de CNS/CID antes do envio.</p>
+                </div>
+                <div class="robot-speed">⚡ 1,10s por emissão</div>
+              </div>
+
+              <div class="robot-card">
+                <div>
+                  <div class="robot-card-top">
+                    <span class="robot-name">SolicitaMV</span>
+                    <span class="robot-badge">Ambulatório</span>
+                  </div>
+                  <p class="robot-desc">Processa 1.666 solicitações/mês com abertura prévia em lote para consultas e procedimentos eletivos.</p>
+                </div>
+                <div class="robot-speed">⚡ Lote Automatizado</div>
+              </div>
+
+              <div class="robot-card">
+                <div>
+                  <div class="robot-card-top">
+                    <span class="robot-name">OpenLEA</span>
+                    <span class="robot-badge">Exames & Ergonomia</span>
+                  </div>
+                  <p class="robot-desc">Processa 1.350 procedimentos/mês em rotina assistida, protegendo a integridade motora da equipe.</p>
+                </div>
+                <div class="robot-speed">⚡ Rotina Assistida</div>
+              </div>
+
+              <div class="robot-card" style="border-color: var(--accent-color);">
+                <div>
+                  <div class="robot-card-top">
+                    <span class="robot-name">Sentinel Hub</span>
+                    <span class="robot-badge" style="background: #10b98122; color: #10b981;">100% LGPD Local</span>
+                  </div>
+                  <p class="robot-desc">Zero PII em nuvem. Logs com carimbo de tempo, governança técnica, auditoria de lotes e bloqueio remoto antifurto.</p>
+                </div>
+                <div class="robot-speed" style="color: var(--accent-color); background: var(--accent-glow);">🛡️ Segurança Hospitalar</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">Stack Técnica Utilizada:</span>
+            <span class="tag-pill">Python</span>
+            <span class="tag-pill">PyAutoGUI</span>
+            <span class="tag-pill">Selenium</span>
+            <span class="tag-pill">MV Soul ERP</span>
+            <span class="tag-pill">APACnet / SES-PE</span>
+            <span class="tag-pill">SQLite</span>
+            <span class="tag-pill">Governança LGPD</span>
+          </div>
+
+        </article>
+
+        <!-- GRID DOS OUTROS CASES: UFAPE APADRINHAMENTO & DOUGLASBLOG -->
+        <div class="secondary-cases-grid">
+          
+          <!-- Case UFAPE -->
+          <article class="case-secondary-card">
+            <div>
+              <div class="case-badge-group" style="margin-bottom: 12px;">
+                <span class="case-badge-highlight">🎓 Open Source & Comunidade</span>
+                <span class="tag-pill">UFAPE ADM</span>
+              </div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">Sistema de Apadrinhamento de Calouros</h3>
+              <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;">
+                Plataforma web pública para integração de novos discentes do curso de Administração da Universidade Federal do Agreste de Pernambuco (UFAPE). Automatiza o pareamento de calouros com veteranos mentores, combatendo a evasão acadêmica precoce.
+              </p>
+            </div>
+            
+            <div class="case-links-group">
+              <a href="https://github.com/KauaVDSB/sistema-apadrinhamento-ufape-adm" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                🐙 Ver no GitHub
+              </a>
+              <span class="tag-pill">JavaScript / Web</span>
+            </div>
+          </article>
+
+          <!-- Case DouglasBlog -->
+          <article class="case-secondary-card">
+            <div>
+              <div class="case-badge-group" style="margin-bottom: 12px;">
+                <span class="case-badge-highlight">🌐 Freelance Web</span>
+                <span class="tag-pill">Educação Científica</span>
+              </div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">DouglasBlog • Plataforma de Ensino de Física</h3>
+              <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;">
+                Primeiro projeto freelance desenvolvido no início de 2025: plataforma de publicação e divulgação científica para professor de física, construída com arquitetura limpa, navegação sem atrito e tipografia voltada à leitura acadêmica.
+              </p>
+            </div>
+
+            <div class="case-links-group">
+              <span class="tag-pill">Web Platform</span>
+              <span class="tag-pill">Freelance Entregue</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       PAINEL FLUTUANTE: DESIGN & PERSONALITY LAB (EM TEMPO REAL)
+       Permite ao usuário alternar temas, 4 paletas curadas ou cores manuais
+       ==================================================================== -->
+  <button class="lab-floating-trigger" id="labTrigger" title="Atalho: Tecla D ou L">
+    <svg class="cheshire-smile-icon" viewBox="0 0 24 24">
+      <path d="M4 10c2 4 6 7 8 7s6-3 8-7"/>
+      <path d="M7 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm10 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+    </svg>
+    <span>Design Lab</span>
+  </button>
+
+  <div class="lab-drawer-overlay" id="labOverlay"></div>
+
+  <aside class="lab-drawer" id="labDrawer">
+    <header class="lab-header">
+      <div class="lab-title-group">
+        <svg class="cheshire-smile-icon" viewBox="0 0 24 24">
+          <path d="M4 10c2 4 6 7 8 7s6-3 8-7"/>
+          <path d="M7 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm10 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+        </svg>
+        <div>
+          <h3 class="lab-title">Design & Personality Lab</h3>
+          <div class="lab-subtitle">Altere paletas e visual em tempo real</div>
+        </div>
+      </div>
+      <button class="lab-close-btn" id="labCloseBtn" title="Fechar (ESC)">✕</button>
+    </header>
+
+    <div class="lab-body">
+      
+      <!-- 1. Modo de Tema -->
+      <div>
+        <div class="lab-section-title">Modo de Exibição</div>
+        <div class="lab-mode-grid">
+          <button class="lab-mode-btn" data-lab-mode="light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            Claro
+          </button>
+          <button class="lab-mode-btn" data-lab-mode="dark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            Escuro
+          </button>
+          <button class="lab-mode-btn active" data-lab-mode="system">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Sistema
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Paletas Curadas -->
+      <div>
+        <div class="lab-section-title">Paletas de Cores Disponíveis</div>
+        <div class="lab-palette-list">
+          
+          <!-- Paleta 1: Editorial #F0EDE8 -->
+          <div class="lab-palette-card active" data-lab-palette="editorial">
+            <div class="palette-info">
+              <h4>Editorial Elegante (#F0EDE8)</h4>
+              <span>Sóbrio, preto ônix e azul oceânico</span>
+            </div>
+            <div class="palette-swatches">
+              <span class="swatch" style="background: #f0ede8;"></span>
+              <span class="swatch" style="background: #1c1917;"></span>
+              <span class="swatch" style="background: #0c6fa0;"></span>
+            </div>
+          </div>
+
+          <!-- Paleta 2: Cheshire Wonderland -->
+          <div class="lab-palette-card" data-lab-palette="cheshire">
+            <div class="palette-info">
+              <h4>Cheshire Wonderland (Alter Ego)</h4>
+              <span>Roxo místico e Laranja vibrante</span>
+            </div>
+            <div class="palette-swatches">
+              <span class="swatch" style="background: #faf7fd;"></span>
+              <span class="swatch" style="background: #7c3aed;"></span>
+              <span class="swatch" style="background: #f97316;"></span>
+            </div>
+          </div>
+
+          <!-- Paleta 3: Healthtech & SUS -->
+          <div class="lab-palette-card" data-lab-palette="healthtech">
+            <div class="palette-info">
+              <h4>Healthtech & SUS (OftalmoPE)</h4>
+              <span>Azul cobalto e Verde esmeralda</span>
+            </div>
+            <div class="palette-swatches">
+              <span class="swatch" style="background: #f4f9fc;"></span>
+              <span class="swatch" style="background: #0284c7;"></span>
+              <span class="swatch" style="background: #059669;"></span>
+            </div>
+          </div>
+
+          <!-- Paleta 4: Tons Terrosos & Pastéis -->
+          <div class="lab-palette-card" data-lab-palette="earthy">
+            <div class="palette-info">
+              <h4>Tons Terrosos & Pastéis</h4>
+              <span>Terracota acolhedor, areia e sálvia</span>
+            </div>
+            <div class="palette-swatches">
+              <span class="swatch" style="background: #f2ede4;"></span>
+              <span class="swatch" style="background: #b45309;"></span>
+              <span class="swatch" style="background: #476655;"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. Seletor Livre em Tempo Real -->
+      <div>
+        <div class="lab-section-title">Color Pickers Livres (Tempo Real)</div>
+        
+        <div class="lab-picker-row">
+          <label for="labBgColor">Cor de Fundo:</label>
+          <div class="lab-color-input-wrapper">
+            <span class="lab-color-val" id="labBgColorVal">#F5F2ED</span>
+            <input type="color" id="labBgColor" value="#f5f2ed">
+          </div>
+        </div>
+
+        <div class="lab-picker-row">
+          <label for="labAccentColor">Cor de Destaque:</label>
+          <div class="lab-color-input-wrapper">
+            <span class="lab-color-val" id="labAccentColorVal">#0C6FA0</span>
+            <input type="color" id="labAccentColor" value="#0c6fa0">
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Modo Cheshire Interativo -->
+      <div>
+        <div class="lab-section-title">Alter Ego & Easter Eggs</div>
+        <div class="lab-toggle-row">
+          <div class="toggle-label-group">
+            <strong>Modo Cheshire Ativo</strong>
+            <span>Frases inusitadas e micro-animações</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="labCheshireToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="lab-footer">
+      <button class="lab-reset-btn" id="labResetBtn">Restaurar Padrões</button>
+    </footer>
+  </aside>
+
+  <!-- ====================================================================
+       MODAL DE VISUALIZAÇÃO DO CURRÍCULO
+       Visualização rápida e botão direto para download/impressão em PDF
+       ==================================================================== -->
+  <div class="modal-overlay" id="resumeModal">
+    <div class="modal-content">
+      <header class="modal-header">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 800;">Currículo • Kauã Barbosa</h3>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">Ciência da Computação (UPE) & Automação Hospitalar</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="/cv.html" target="_blank" class="btn btn-primary btn-sm">
+            🖨️ Abrir Versão Imprimível / PDF
+          </a>
+          <button class="modal-close-btn" id="closeResumeModal">✕</button>
+        </div>
+      </header>
+
+      <div class="modal-body">
+        <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 14px; margin-bottom: 16px;">
+          <h2 style="font-size: 1.3rem; margin-bottom: 4px;">Kauã Vinicius dos Santos Barbosa</h2>
+          <p style="font-size: 0.88rem; color: var(--accent-color); font-weight: 700;">Desenvolvedor de Software • RPA Hospitalar (SUS) • Ciência da Computação</p>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">19 anos • Garanhuns - PE • kauavdsb.jobs@gmail.com • github.com/KauaVDSB</p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; text-transform: uppercase;">Big Numbers de Produção (OftalmoPE Tech)</h4>
+          <ul style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; list-style: disc; padding-left: 20px;">
+            <li><strong>+100 horas úteis salvas/mês</strong> em digitação braçal de faturamento SUS.</li>
+            <li><strong>FinalizaMV:</strong> Baixa cirúrgica no MV Soul reduzida de 85s para 0,65s (130x mais rápida) em 1.440 cirurgias/mês.</li>
+            <li><strong>SolicitaAPAC:</strong> Emissão de APACs reduzida de 80s para 1,10s (72x mais veloz) com validação contra glosas.</li>
+            <li><strong>ROI direto de folha:</strong> > R$ 2.501,75/mês gerados internamente.</li>
+            <li><strong>Capital SUS blindado:</strong> Mais de R$ 1,2 milhão/mês faturados com conformidade estrita e 100% LGPD local (Zero PII em nuvem).</li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; text-transform: uppercase;">Formação & Conquistas</h4>
+          <ul style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; list-style: disc; padding-left: 20px;">
+            <li><strong>Bacharelado em Ciência da Computação:</strong> UPE (4º período atual, aprovado em 13º lugar Ampla Concorrência).</li>
+            <li><strong>Monitor de Ciência da Computação na UPE:</strong> Aprovado já no 2º período, monitor ativo até o presente.</li>
+            <li><strong>Licenciatura em Computação (UPE):</strong> Aprovado em 4º lugar (Ampla Concorrência).</li>
+            <li><strong>Técnico em Desenvolvimento de Sistemas:</strong> ETE Ariano Vilar Suassuna (concluído em 2024).</li>
+            <li><strong>Projetos FACEPE:</strong> 2 simultâneos (bolsista e voluntário - Arduino, telemetria de sensores e impressão 3D).</li>
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="/cv.html" target="_blank" class="btn btn-primary">
+            📄 Abrir Currículo Completo Formatado para A4 / Impressão
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Modular (ES Modules nativo) -->
+  <script type="module" src="js/main.js"></script>
+  
+  <script>
+    // Evento rápido para botão Hero abrir o Design Lab
+    document.getElementById('labTriggerHero')?.addEventListener('click', () => {
+      document.getElementById('labTrigger')?.click();
+    });
+  </script>
+</body>
+</html>
