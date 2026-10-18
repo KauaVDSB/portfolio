@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light" data-palette="editorial">
+<html lang="pt-BR" data-theme="dark" data-palette="PAL-01">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kauã Barbosa • Engenheiro de Software & Automação Hospitalar</title>
-  <meta name="description" content="Portfólio & Currículo de Kauã Vinicius dos Santos Barbosa: Bacharelado em Ciência da Computação (UPE), criador da esteira OftalmoPE Tech e desenvolvedor de software de alto impacto.">
-  
-  <!-- Fontes do Google -->
+  <title>Kauã Vinicius • Engenharia de Software & Automação</title>
+
+  <!-- Fontes: Syne (Monumental Display), Inter (UI/Editorial), JetBrains Mono (Tech/HUD) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Arquitetura Modular de Estilos CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Arquitetura CSS Modular -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -19,291 +18,465 @@
   <link rel="stylesheet" href="css/sections/hero.css">
   <link rel="stylesheet" href="css/sections/cases.css">
 </head>
-<body>
+<body data-cases-layout="CASE-01">
 
-  <!-- NAVBAR SUPERIOR FLUTUANTE -->
-  <header class="site-header">
-    <div class="container nav-wrapper">
-      <a href="#" class="nav-brand" id="cheshireEasterEgg" title="Alter ego Cheshire: clique para uma surpresa">
-        <div class="brand-symbol">K</div>
-        <span>Kauã Barbosa<span style="color: var(--accent-color);">.</span></span>
-      </a>
+  <!-- ====================================================================
+       1. PRELOADER DO GATO RISONHO (CHESHIRE AMIGÁVEL + LEVITAÇÃO SUAVE)
+       ==================================================================== -->
+  <div class="cheshire-preloader" id="cheshirePreloader" title="Clique para pular">
+    <div class="cheshire-loader-stage">
+      <svg class="cheshire-loader-svg" viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="eyeTurquoise" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#38bdf8" />
+            <stop offset="55%" stop-color="#00e5ff" />
+            <stop offset="100%" stop-color="#0284c7" />
+          </radialGradient>
+        </defs>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="#hero" class="nav-link active">Início</a>
-        <a href="#cases" class="nav-link">Cases de Impacto</a>
-        <a href="/cv.html" class="nav-link" target="_blank">Currículo Completo</a>
+        <!-- Olho Esquerdo Amigável -->
+        <g class="cheshire-eye left" style="transform-origin: 72px 48px;">
+          <ellipse cx="72" cy="48" rx="22" ry="16" fill="url(#eyeTurquoise)" />
+          <ellipse cx="72" cy="48" rx="5.5" ry="12" fill="#05080d" />
+          <circle cx="66" cy="42" r="3.5" fill="#ffffff" opacity="0.9" />
+        </g>
+
+        <!-- Olho Direito Amigável -->
+        <g class="cheshire-eye right" style="transform-origin: 168px 48px;">
+          <ellipse cx="168" cy="48" rx="22" ry="16" fill="url(#eyeTurquoise)" />
+          <ellipse cx="168" cy="48" rx="5.5" ry="12" fill="#05080d" />
+          <circle cx="162" cy="42" r="3.5" fill="#ffffff" opacity="0.9" />
+        </g>
+
+        <!-- Sorriso Largo, Suave e Carismático que se Abre Devagar -->
+        <path class="cheshire-smile-path" d="M 32 86 C 68 134, 172 134, 208 86" />
+        <!-- Covinhas Simpáticas nas Pontas do Sorriso -->
+        <path class="cheshire-smile-dimple" d="M 24 80 Q 30 92 40 88" />
+        <path class="cheshire-smile-dimple" d="M 216 80 Q 210 92 200 88" />
+      </svg>
+    </div>
+    <div class="preloader-caption">Nem todo quem vagueia está perdido...</div>
+  </div>
+
+  <!-- ====================================================================
+       2. BOLINHA PERSEGUIDORA DO MOUSE (FÍSICA LERP 60FPS)
+       ==================================================================== -->
+  <div class="cursor-follower-ball" id="cursorBall"></div>
+
+  <!-- ====================================================================
+       3. MOLDURA HUD FIXA NOS 4 CANTOS (INSPIRADA EM MINHPHAM.DESIGN)
+       ==================================================================== -->
+  <div class="hud-frame">
+    <div class="hud-row-top">
+      <!-- Canto Superior Esquerdo: Emblema do Gato Minimalista -->
+      <div class="hud-brand" id="cheshireBrandBtn" title="Clique para ver o sorriso do Cheshire">
+        <div class="cat-emblem-circle">
+          <svg class="cat-emblem-svg" viewBox="0 0 36 36" fill="currentColor">
+            <!-- Silhueta de Gato Minimalista Estilo Minh Pham + Sorriso Cheshire -->
+            <path d="M9 28 L11 11 L15.5 16.5 L20.5 16.5 L25 11 L27 28 Z" />
+            <circle cx="15" cy="21" r="1.4" fill="var(--bg-color)" />
+            <circle cx="21" cy="21" r="1.4" fill="var(--bg-color)" />
+            <path d="M13.5 24.2 Q18 27 22.5 24.2" fill="none" stroke="var(--bg-color)" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+        <span class="hud-brand-label">Kauã Vinicius • Cheshire</span>
+      </div>
+
+      <!-- Canto Superior Direito: Menu Vertical Minimalista -->
+      <nav class="hud-nav" aria-label="Navegação Principal">
+        <a href="#hero" class="hud-nav-link active">Início</a>
+        <a href="#cases" class="hud-nav-link">Trabalhos</a>
+        <a href="#curriculo" class="hud-nav-link" data-action="open-resume">Currículo</a>
+        <a href="#lab" class="hud-nav-link" id="hudOpenLab">Design Lab</a>
       </nav>
+    </div>
 
-      <div class="nav-actions">
-        <button class="btn btn-secondary btn-sm" data-action="open-resume">
-          📄 Ver Currículo
-        </button>
-        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div class="hud-row-bottom">
+      <!-- Canto Inferior Esquerdo: Ícones Sociais Empilhados -->
+      <div class="hud-socials">
+        <a href="https://github.com/KauaVDSB" target="_blank" rel="noopener noreferrer" class="hud-social-btn" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a href="mailto:kauavdsb.jobs@gmail.com" class="hud-social-btn" title="E-mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+        <button class="hud-social-btn" data-action="open-resume" title="Baixar Currículo PDF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </button>
       </div>
-    </div>
-  </header>
 
+      <!-- Espaço reservado para o botão flutuante do Design Lab no canto inferior direito -->
+      <div></div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       CONTEÚDO PRINCIPAL
+       ==================================================================== -->
   <main>
 
-    <!-- ====================================================================
-         SEÇÃO 1: HERO SECTION
-         Apresentação, alter ego Cheshire, formação, monitoria e Big Numbers
-         ==================================================================== -->
+    <!-- ==================================================================
+         SEÇÃO 1: HERO MONUMENTAL (ESTILO MINH PHAM + LUPA REVELADORA)
+         ================================================================== -->
     <section class="hero-section" id="hero">
-      <div class="container hero-content">
-        
-        <div class="hero-meta-badge">
-          <span class="status-dot"></span>
-          <span>Disponível para novos desafios • Monitoria UPE & Dev</span>
+      <div class="hero-ambient-glow"></div>
+
+      <div class="container hero-stage-wrapper">
+
+        <div style="margin-bottom: 1rem;">
+          <span class="lupa-hint-pill">
+            <span class="lupa-hint-dot"></span>
+            Passe o mouse (ou toque) nas letras para revelar os segredos com a Lupa
+          </span>
         </div>
 
-        <div class="hero-greeting">
-          <span>// olá, mundo! eu sou</span>
+        <!-- PALCO DE LUPA 1: TÍTULO MONUMENTAL CENTRAL -->
+        <div class="mask-reveal-container hero-mask-box">
+          <!-- Camada Pública Visível -->
+          <div class="public-layer">
+            <span class="hero-eyebrow">K A U Ã &nbsp; V I N I C I U S</span>
+            <h1 class="hero-monumental-title" id="heroPublicTitle">
+              <span>CRIANDO</span>
+              <span><span class="line-accent">SISTEMAS</span></span>
+              <span><span class="line-accent">REAIS</span></span>
+              <span>COM IMPACTO</span>
+              <span>REAL</span>
+            </h1>
+          </div>
+
+          <!-- Camada Secreta Revelada pela Lupa Circular (Alto Contraste) -->
+          <div class="secret-mask-layer" aria-hidden="true">
+            <span class="hero-eyebrow">A L T E R &nbsp; E G O &nbsp; C H E S H I R E</span>
+            <div class="hero-monumental-title" id="heroSecretTitle">
+              <span>ACHANDO</span>
+              <span>ATALHOS</span>
+              <span>ONDE SÓ</span>
+              <span>VIAM O</span>
+              <span>CAOS</span>
+            </div>
+          </div>
         </div>
 
-        <h1 class="hero-title">
-          Kauã Barbosa<span class="cheshire-accent" title="O alter ego perspicaz do Cheshire Cat">^</span>
-          <br>
-          <span class="highlight-gradient">Criando tecnologia real com retorno real.</span>
-        </h1>
+        <!-- PALCO DE LUPA 2: BIO CONCISA (CC 4º PERÍODO UFAPE) -->
+        <div class="mask-reveal-container hero-bio-mask-box">
+          <div class="public-layer">
+            <p class="hero-bio-text">
+              Estudante de <strong>Ciência da Computação (4º período) na UFAPE</strong>, Monitor Acadêmico e Técnico em Desenvolvimento de Sistemas (ETE-AVS). Transformo gargalos complexos em automações ultrarrápidas e produtos com ROI real.
+            </p>
+          </div>
+          <div class="secret-mask-layer" aria-hidden="true" style="padding: 1rem 1.5rem;">
+            <p class="hero-bio-text" style="font-weight: 700;">
+              Dos primeiros bots no Discord às esteiras hospitalares no SUS: descubro padrões do zero, transformo tropeços em impulso e resolvo o impossível com um sorriso no rosto.
+            </p>
+          </div>
+        </div>
 
-        <p class="hero-subtitle">
-          Estudante de <strong>Ciência da Computação na UPE</strong> (4º período, monitor desde o 2º) e <strong>Técnico em Desenvolvimento de Sistemas</strong> (ETE-AVS). Concepção e entrega de esteiras de automação de missão crítica no SUS — gerando mais de <strong>100 horas úteis salvas por mês</strong> e blindando mais de <strong>R$ 1,2 milhão</strong> em faturamento hospitalar.
-        </p>
-
-        <div class="hero-cta-group">
-          <a href="#cases" class="btn btn-primary btn-lg">
-            ⚡ Explorar Cases & Métricas de ROI
+        <!-- CTAs Principais -->
+        <div class="hero-actions-bar">
+          <a href="#cases" class="btn btn-primary">
+            ⚡ Ver Trabalhos & Impacto
           </a>
-          <button class="btn btn-secondary btn-lg" data-action="open-resume">
-            📄 Baixar Currículo (PDF/Web)
+          <button class="btn btn-outline" data-action="open-resume">
+            📄 Baixar Currículo
           </button>
-          <button class="btn btn-cheshire btn-lg" id="labTriggerHero">
-            🎨 Design Lab (Testar Paletas)
+          <button class="btn btn-outline btn-sm" id="toggleLupaDemoBtn" title="Faz a lupa passear automaticamente pelo título">
+            🔍 Testar Lupa Automática
           </button>
         </div>
 
-        <!-- Big Numbers Grid do Hero -->
-        <div class="hero-stats-grid">
-          <div class="hero-stat-card">
-            <div class="stat-value accent">+100 h</div>
-            <div class="stat-label">Horas Úteis Salvas/Mês</div>
-            <div class="stat-subtext">> 12 dias de digitação braçal poupados</div>
+        <!-- Pílulas Flutuantes (Levitação Misteriosa) -->
+        <div class="hero-floating-pills">
+          <div class="floating-stat-pill">
+            <div class="f-stat-num accent">+100h</div>
+            <div class="f-stat-label">Salvas / Mês</div>
+            <div class="f-stat-sub">> 12 dias úteis poupados em produção</div>
           </div>
 
-          <div class="hero-stat-card">
-            <div class="stat-value">130x</div>
-            <div class="stat-label">Aceleração de Baixas</div>
-            <div class="stat-subtext">De 85s para 0,65s por cirurgia no MV</div>
+          <div class="floating-stat-pill">
+            <div class="f-stat-num">130x</div>
+            <div class="f-stat-label">Mais Veloz</div>
+            <div class="f-stat-sub">Baixa cirúrgica de 85s para 0,65s</div>
           </div>
 
-          <div class="hero-stat-card">
-            <div class="stat-value accent">> R$ 1,2 Mi</div>
-            <div class="stat-label">Capital SUS Blindado</div>
-            <div class="stat-subtext">Proteção mensal contra glosas e atrasos</div>
+          <div class="floating-stat-pill">
+            <div class="f-stat-num accent">> R$ 1,2M</div>
+            <div class="f-stat-label">SUS Blindado</div>
+            <div class="f-stat-sub">Faturamento protegido contra glosas</div>
           </div>
 
-          <div class="hero-stat-card">
-            <div class="stat-value">4º / 13º</div>
-            <div class="stat-label">Aprovações UPE</div>
-            <div class="stat-subtext">Licenciatura (4º) e Bacharelado CC (13º)</div>
+          <div class="floating-stat-pill">
+            <div class="f-stat-num">UFAPE</div>
+            <div class="f-stat-label">CC • 4º Período</div>
+            <div class="f-stat-sub">Bacharelado & Monitoria Acadêmica</div>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ====================================================================
-         SEÇÃO 2: CASES DE IMPACTO REAL
-         OftalmoPE Tech (Robôs, Métricas, ROI) & Apadrinhamento UFAPE & DouglasBlog
-         ==================================================================== -->
-    <section class="section-spacing cases-section" id="cases">
+    <!-- ==================================================================
+         SEÇÃO 2: CASES DE IMPACTO REAL (DUAL VIEW: CASE-01 & CASE-02)
+         OftalmoPE enxuto de início e expansível sob demanda ("4 ferramentas")
+         ================================================================== -->
+    <section class="cases-section" id="cases">
       <div class="container">
-        
-        <header class="section-header">
-          <div class="section-tag">Produtos Reais • Métricas Auditadas</div>
-          <h2 class="section-title">Cases de Impacto & Engenharia com ROI Tangível</h2>
-          <p class="section-desc">
-            Mais do que linhas de código: soluções concebidas para resolver dores operacionais concretas, testadas em ambiente real com retorno mensurável.
-          </p>
-        </header>
 
-        <!-- CASE PRINCIPAL: OFTALMOPE TECH & AXYMOS -->
-        <article class="case-featured-card">
-          
-          <div class="case-top-meta">
-            <div class="case-badge-group">
-              <span class="case-badge-highlight">🏥 Case de Sucesso em Produção</span>
-              <span class="tag-pill">Hospital de Olhos OftalmoPE (SUS)</span>
-              <span class="tag-pill">Axymos Tecnologia</span>
-              <span class="tag-pill">Zero PII em Nuvem (LGPD)</span>
-            </div>
-            <span class="status-pill"><span class="status-dot"></span> Esteira Ativa em Produção</span>
-          </div>
+        <div class="cases-header-wrap">
+          <span class="cases-eyebrow">02 // PRODUTOS REAIS & MÉTRICAS AUDITADAS</span>
+          <h2 class="cases-main-heading">Trabalhos Selecionados</h2>
+        </div>
 
-          <h3 class="case-title">OftalmoPE Tech • Esteira RPA de Faturamento SUS & Governança</h3>
-          
-          <p class="case-summary">
-            Desenvolvido por iniciativa própria a partir da observação dos gargalos do hospital: a equipe realizava mais de 5.770 procedimentos manuais por mês, demandando 85s por cirurgia e gerando riscos crônicos de perda de prazos de remessa SES-PE e glosas. A esteira converteu dias de digitação em milissegundos auditados com governança local estrita via Sentinel Hub.
-          </p>
+        <!-- ==============================================================
+             OPÇÃO CASE-01: LISTA EDITORIAL INTERATIVA (ESTILO MINH PHAM)
+             ============================================================== -->
+        <div class="cases-view-editorial">
 
-          <!-- Grid de Métricas de ROI Auditadas -->
-          <div class="case-roi-grid">
-            <div class="case-roi-box">
-              <div class="roi-num gain">+100 h</div>
-              <div class="roi-lbl">Horas Úteis Salvas/Mês</div>
-              <div class="roi-sub">> 12 dias úteis de trabalho manual devolvidos à gestão</div>
-            </div>
-
-            <div class="case-roi-box">
-              <div class="roi-num accent">0,65s</div>
-              <div class="roi-lbl">FinalizaMV</div>
-              <div class="roi-sub">Baixa cirúrgica reduzida de 85s para menos de 1s (130x mais veloz)</div>
-            </div>
-
-            <div class="case-roi-box">
-              <div class="roi-num accent">1,10s</div>
-              <div class="roi-lbl">SolicitaAPAC</div>
-              <div class="roi-sub">Emissão integrada à SES-PE com validação prévia contra glosas</div>
-            </div>
-
-            <div class="case-roi-box">
-              <div class="roi-num gain">R$ 2.501,75</div>
-              <div class="roi-lbl">ROI Direto de Folha/Mês</div>
-              <div class="roi-sub">Base conservadora R$ 25/h (BPO mercado: R$ 6k a 9k/mês)</div>
-            </div>
-
-            <div class="case-roi-box">
-              <div class="roi-num">> R$ 1,2 Mi</div>
-              <div class="roi-lbl">Faturamento SUS Blindado</div>
-              <div class="roi-sub">Montante mensal protegido com integridade estrita de dados</div>
-            </div>
-          </div>
-
-          <!-- A Suíte de 4 Robôs + Sentinel Hub -->
-          <div class="robots-showcase">
-            <div class="robots-header">
-              <h4>A Suíte OftalmoPE Tech em Operação:</h4>
-              <p style="font-size: 0.88rem; color: var(--text-muted);">Quatro robôs especializados cobrindo todo o ciclo cirúrgico, ambulatorial e laudos.</p>
-            </div>
-
-            <div class="robots-grid">
-              <div class="robot-card">
-                <div>
-                  <div class="robot-card-top">
-                    <span class="robot-name">FinalizaMV</span>
-                    <span class="robot-badge">Bloco Cirúrgico</span>
-                  </div>
-                  <p class="robot-desc">Processa 1.440 cirurgias/mês. Encerra e baixa guias no MV Soul instantaneamente, eliminando pilhas de papéis.</p>
+          <!-- CASE 1: OFTALMOPE TECH (ENXUTO + LUPA + ACORDEÃO EXPANSÍVEL) -->
+          <article class="editorial-case-item">
+            <div class="mask-reveal-container">
+              <!-- Camada Pública -->
+              <div class="public-layer editorial-case-row">
+                <div class="editorial-case-left">
+                  <span class="editorial-case-index">01 / AUTOMAÇÃO HOSPITALAR & SUS • EM PRODUÇÃO</span>
+                  <h3 class="editorial-case-title">OFTALMOPE TECH</h3>
+                  <p class="editorial-case-Pitch">
+                    Como apenas <strong>4 ferramentas rápidas</strong> salvam o faturamento de uma empresa hospitalar inteira — reduzindo erros a zero, eliminando gargalos manuais e hiper-acelerando demandas.
+                  </p>
                 </div>
-                <div class="robot-speed">⚡ 0,65s por cirurgia</div>
+                <div class="editorial-case-right">
+                  <span class="editorial-metric-pill">+100h Salvas/Mês</span>
+                  <span class="editorial-metric-pill">85s → 0,65s (130x)</span>
+                </div>
               </div>
 
-              <div class="robot-card">
-                <div>
-                  <div class="robot-card-top">
-                    <span class="robot-name">SolicitaAPAC</span>
-                    <span class="robot-badge">SES-PE / Laudos</span>
+              <!-- Camada Secreta da Lupa -->
+              <div class="secret-mask-layer" aria-hidden="true">
+                <div class="editorial-case-row">
+                  <div class="editorial-case-left">
+                    <span class="editorial-case-index">SEGREDO DE BASTIDOR // ROI AUDITADO EM PRODUÇÃO</span>
+                    <h3 class="editorial-case-title">4 ROBÔS + SENTINEL HUB</h3>
+                    <p class="editorial-case-Pitch" style="font-weight: 700;">
+                      +R$ 2.501/mês de ROI direto em folha • > R$ 1,2 Milhão/mês blindados no SUS • 100% Local (Zero PII em Nuvem / LGPD).
+                    </p>
                   </div>
-                  <p class="robot-desc">Processa 1.315 laudos/mês. Integração direta e checagem de integridade cadastral de CNS/CID antes do envio.</p>
-                </div>
-                <div class="robot-speed">⚡ 1,10s por emissão</div>
-              </div>
-
-              <div class="robot-card">
-                <div>
-                  <div class="robot-card-top">
-                    <span class="robot-name">SolicitaMV</span>
-                    <span class="robot-badge">Ambulatório</span>
+                  <div class="editorial-case-right">
+                    <span class="editorial-metric-pill" style="border-color: currentColor;">Zero Glosas</span>
+                    <span class="editorial-metric-pill" style="border-color: currentColor;">5.771 Guias/Mês</span>
                   </div>
-                  <p class="robot-desc">Processa 1.666 solicitações/mês com abertura prévia em lote para consultas e procedimentos eletivos.</p>
                 </div>
-                <div class="robot-speed">⚡ Lote Automatizado</div>
-              </div>
-
-              <div class="robot-card">
-                <div>
-                  <div class="robot-card-top">
-                    <span class="robot-name">OpenLEA</span>
-                    <span class="robot-badge">Exames & Ergonomia</span>
-                  </div>
-                  <p class="robot-desc">Processa 1.350 procedimentos/mês em rotina assistida, protegendo a integridade motora da equipe.</p>
-                </div>
-                <div class="robot-speed">⚡ Rotina Assistida</div>
-              </div>
-
-              <div class="robot-card" style="border-color: var(--accent-color);">
-                <div>
-                  <div class="robot-card-top">
-                    <span class="robot-name">Sentinel Hub</span>
-                    <span class="robot-badge" style="background: #10b98122; color: #10b981;">100% LGPD Local</span>
-                  </div>
-                  <p class="robot-desc">Zero PII em nuvem. Logs com carimbo de tempo, governança técnica, auditoria de lotes e bloqueio remoto antifurto.</p>
-                </div>
-                <div class="robot-speed" style="color: var(--accent-color); background: var(--accent-glow);">🛡️ Segurança Hospitalar</div>
               </div>
             </div>
-          </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">Stack Técnica Utilizada:</span>
-            <span class="tag-pill">Python</span>
-            <span class="tag-pill">PyAutoGUI</span>
-            <span class="tag-pill">Selenium</span>
-            <span class="tag-pill">MV Soul ERP</span>
-            <span class="tag-pill">APACnet / SES-PE</span>
-            <span class="tag-pill">SQLite</span>
-            <span class="tag-pill">Governança LGPD</span>
-          </div>
-
-        </article>
-
-        <!-- GRID DOS OUTROS CASES: UFAPE APADRINHAMENTO & DOUGLASBLOG -->
-        <div class="secondary-cases-grid">
-          
-          <!-- Case UFAPE -->
-          <article class="case-secondary-card">
-            <div>
-              <div class="case-badge-group" style="margin-bottom: 12px;">
-                <span class="case-badge-highlight">🎓 Open Source & Comunidade</span>
-                <span class="tag-pill">UFAPE ADM</span>
-              </div>
-              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">Sistema de Apadrinhamento de Calouros</h3>
-              <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;">
-                Plataforma web pública para integração de novos discentes do curso de Administração da Universidade Federal do Agreste de Pernambuco (UFAPE). Automatiza o pareamento de calouros com veteranos mentores, combatendo a evasão acadêmica precoce.
-              </p>
+            <!-- Barra de Ação: Expandir detalhes das 4 ferramentas sob demanda -->
+            <div class="editorial-actions-strip">
+              <button class="oftalmo-expand-trigger" data-toggle-oftalmo="oftalmoDrawerEditorial">
+                <span>⚡ Desvendar como as 4 ferramentas salvam a operação (+ Detalhes)</span>
+                <span class="chevron">▼</span>
+              </button>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">
+                Python • PyAutoGUI • Selenium • MV Soul • SES-PE
+              </span>
             </div>
-            
-            <div class="case-links-group">
-              <a href="https://github.com/KauaVDSB/sistema-apadrinhamento-ufape-adm" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                🐙 Ver no GitHub
-              </a>
-              <span class="tag-pill">JavaScript / Web</span>
+
+            <!-- Gaveta Expansível (Acordeão Suave) -->
+            <div class="oftalmo-drawer" id="oftalmoDrawerEditorial">
+              <div class="oftalmo-drawer-inner">
+                <p class="oftalmo-story-lead">
+                  <strong>O Diagnóstico & A Virada:</strong> Antes, mais de 5.770 procedimentos mensais exigiam digitação braçal repetitiva entre o sistema MV Soul e os portais da SES-PE (85 segundos por cirurgia). Desenvolvi por iniciativa própria 4 ferramentas cirúrgicas governadas localmente pelo <strong>Sentinel Hub</strong>:
+                </p>
+                <div class="oftalmo-4tools-grid">
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top">
+                      <span class="mini-tool-name">1. FinalizaMV</span>
+                      <span class="mini-tool-speed">0,65s / cirurgia</span>
+                    </div>
+                    <p class="mini-tool-desc">1.440 cirurgias/mês. Reduziu a baixa cirúrgica no MV Soul de 85s para menos de 1s (130x mais veloz).</p>
+                  </div>
+
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top">
+                      <span class="mini-tool-name">2. SolicitaAPAC</span>
+                      <span class="mini-tool-speed">1,10s / laudo</span>
+                    </div>
+                    <p class="mini-tool-desc">1.315 laudos/mês. Emissão integrada à SES-PE (72x mais rápida) com validação automática contra glosas.</p>
+                  </div>
+
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top">
+                      <span class="mini-tool-name">3. SolicitaMV</span>
+                      <span class="mini-tool-speed">Lote Automático</span>
+                    </div>
+                    <p class="mini-tool-desc">1.666 solicitações/mês. Abertura prévia de guias ambulatoriais sem digitação individual.</p>
+                  </div>
+
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top">
+                      <span class="mini-tool-name">4. OpenLEA</span>
+                      <span class="mini-tool-speed">Ergonomia</span>
+                    </div>
+                    <p class="mini-tool-desc">1.350 procedimentos/mês assistidos + <strong>Sentinel Hub</strong> (auditoria local e Zero PII em nuvem).</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
 
-          <!-- Case DouglasBlog -->
-          <article class="case-secondary-card">
-            <div>
-              <div class="case-badge-group" style="margin-bottom: 12px;">
-                <span class="case-badge-highlight">🌐 Freelance Web</span>
-                <span class="tag-pill">Educação Científica</span>
+          <!-- CASE 2: SISTEMA DE APADRINHAMENTO UFAPE ADM -->
+          <article class="editorial-case-item">
+            <div class="mask-reveal-container">
+              <div class="public-layer editorial-case-row">
+                <div class="editorial-case-left">
+                  <span class="editorial-case-index">02 / ENGENHARIA WEB & COMUNIDADE ACADÊMICA • OPEN SOURCE</span>
+                  <h3 class="editorial-case-title">APADRINHAMENTO UFAPE</h3>
+                  <p class="editorial-case-Pitch">
+                    Plataforma pública para conectar calouros de Administração da UFAPE a veteranos mentores, promovendo acolhimento e integração universitária.
+                  </p>
+                </div>
+                <div class="editorial-case-right">
+                  <span class="editorial-metric-pill">100% Open Source</span>
+                  <span class="editorial-metric-pill">UFAPE ADM</span>
+                </div>
               </div>
-              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">DouglasBlog • Plataforma de Ensino de Física</h3>
-              <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;">
-                Primeiro projeto freelance desenvolvido no início de 2025: plataforma de publicação e divulgação científica para professor de física, construída com arquitetura limpa, navegação sem atrito e tipografia voltada à leitura acadêmica.
-              </p>
+
+              <div class="secret-mask-layer" aria-hidden="true">
+                <div class="editorial-case-row">
+                  <div class="editorial-case-left">
+                    <span class="editorial-case-index">IMPACTO SOCIAL // UNIVERSIDADE FEDERAL DO AGRESTE DE PERNAMBUCO</span>
+                    <h3 class="editorial-case-title">CONEXÃO HUMANA VIA CÓDIGO</h3>
+                    <p class="editorial-case-Pitch" style="font-weight: 700;">
+                      Arquitetura web responsiva e pareamento inteligente para ninguém caminhar sozinho no início da jornada universitária.
+                    </p>
+                  </div>
+                  <div class="editorial-case-right">
+                    <span class="editorial-metric-pill" style="border-color: currentColor;">GitHub Público</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="case-links-group">
-              <span class="tag-pill">Web Platform</span>
-              <span class="tag-pill">Freelance Entregue</span>
+            <div class="editorial-actions-strip">
+              <a href="https://github.com/KauaVDSB/sistema-apadrinhamento-ufape-adm" target="_blank" rel="noopener noreferrer" class="oftalmo-expand-trigger">
+                <span>🐙 Explorar Repositório no GitHub</span>
+                <span>↗</span>
+              </a>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">
+                JavaScript • HTML5 Semântico • CSS3 Moderno
+              </span>
             </div>
+          </article>
+
+          <!-- CASE 3: DOUGLAS BLOG -->
+          <article class="editorial-case-item">
+            <div class="mask-reveal-container">
+              <div class="public-layer editorial-case-row">
+                <div class="editorial-case-left">
+                  <span class="editorial-case-index">03 / PLATAFORMA EDUCACIONAL • FREELANCE</span>
+                  <h3 class="editorial-case-title">DOUGLAS BLOG</h3>
+                  <p class="editorial-case-Pitch">
+                    Primeiro projeto web comercial entregue no início de 2025: portal de artigos e ensino de Física com leitura fluida e publicação dinâmica.
+                  </p>
+                </div>
+                <div class="editorial-case-right">
+                  <span class="editorial-metric-pill">1º Freelance Web</span>
+                  <span class="editorial-metric-pill">Ensino de Física</span>
+                </div>
+              </div>
+
+              <div class="secret-mask-layer" aria-hidden="true">
+                <div class="editorial-case-row">
+                  <div class="editorial-case-left">
+                    <span class="editorial-case-index">MARCO INICIAL // INÍCIO DE 2025</span>
+                    <h3 class="editorial-case-title">ONDE TUDO COMEÇOU NA WEB</h3>
+                    <p class="editorial-case-Pitch" style="font-weight: 700;">
+                      Transformando a didática de um professor de Física em uma plataforma digital sob medida.
+                    </p>
+                  </div>
+                  <div class="editorial-case-right">
+                    <span class="editorial-metric-pill" style="border-color: currentColor;">Produção 2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ==============================================================
+             OPÇÃO CASE-02: BENTO GRID MISTERIOSO FLUTUANTE (ALTERNÁVEL NO LAB)
+             ============================================================== -->
+        <div class="cases-view-bento">
+
+          <!-- Bento 1: OftalmoPE -->
+          <article class="bento-case-card floating-element">
+            <div class="mask-reveal-container" style="padding: 0.5rem; border-radius: var(--radius-md);">
+              <div class="public-layer">
+                <span class="editorial-case-index">01 / AUTOMAÇÃO HOSPITALAR & SUS</span>
+                <h3 class="editorial-case-title" style="margin: 8px 0;">OFTALMOPE TECH</h3>
+                <p class="editorial-case-Pitch">
+                  Apenas <strong>4 ferramentas rápidas</strong> que salvam o faturamento hospitalar: reduzindo o tempo cirúrgico no MV de 85s para 0,65s, devolvendo +100h úteis/mês e blindando > R$ 1,2M no SUS.
+                </p>
+              </div>
+              <div class="secret-mask-layer" aria-hidden="true" style="padding: 1rem;">
+                <span class="editorial-case-index">IMPACTO AUDITADO</span>
+                <h3 class="editorial-case-title" style="margin: 8px 0;">130X MAIS VELOZ • ZERO GLOSAS</h3>
+                <p class="editorial-case-Pitch" style="font-weight: 700;">
+                  Economia direta de folha + governança local Sentinel Hub (100% LGPD, Zero PII em nuvem).
+                </p>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.2rem;">
+              <button class="oftalmo-expand-trigger" data-toggle-oftalmo="oftalmoDrawerBento">
+                <span>⚡ Ver as 4 Ferramentas em Detalhes</span>
+                <span class="chevron">▼</span>
+              </button>
+            </div>
+
+            <div class="oftalmo-drawer" id="oftalmoDrawerBento" style="padding-left: 0; padding-right: 0;">
+              <div class="oftalmo-drawer-inner" style="margin-top: 1rem;">
+                <div class="oftalmo-4tools-grid">
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top"><span class="mini-tool-name">FinalizaMV</span><span class="mini-tool-speed">0,65s</span></div>
+                    <p class="mini-tool-desc">1.440 cirurgias/mês encerradas em menos de 1 segundo.</p>
+                  </div>
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top"><span class="mini-tool-name">SolicitaAPAC</span><span class="mini-tool-speed">1,10s</span></div>
+                    <p class="mini-tool-desc">1.315 laudos/mês validados contra glosas na SES-PE.</p>
+                  </div>
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top"><span class="mini-tool-name">SolicitaMV</span><span class="mini-tool-speed">Lote</span></div>
+                    <p class="mini-tool-desc">1.666 solicitações/mês abertas automaticamente.</p>
+                  </div>
+                  <div class="mini-tool-card">
+                    <div class="mini-tool-top"><span class="mini-tool-name">OpenLEA + Sentinel</span><span class="mini-tool-speed">LGPD</span></div>
+                    <p class="mini-tool-desc">1.350 exames/mês com ergonomia e auditoria 100% local.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bento 2: UFAPE -->
+          <article class="bento-case-card half floating-element-delayed">
+            <span class="editorial-case-index">02 / OPEN SOURCE • UFAPE</span>
+            <h3 class="editorial-case-title" style="font-size: 1.9rem; margin: 10px 0;">APADRINHAMENTO UFAPE ADM</h3>
+            <p class="editorial-case-Pitch" style="margin-bottom: 1.4rem;">
+              Sistema público que conecta calouros do curso de Administração da UFAPE a mentores veteranos.
+            </p>
+            <a href="https://github.com/KauaVDSB/sistema-apadrinhamento-ufape-adm" target="_blank" rel="noopener noreferrer" class="oftalmo-expand-trigger">
+              <span>🐙 Repositório GitHub</span>
+              <span>↗</span>
+            </a>
+          </article>
+
+          <!-- Bento 3: DouglasBlog -->
+          <article class="bento-case-card half floating-element">
+            <span class="editorial-case-index">03 / FREELANCE WEB • 2025</span>
+            <h3 class="editorial-case-title" style="font-size: 1.9rem; margin: 10px 0;">DOUGLAS BLOG</h3>
+            <p class="editorial-case-Pitch" style="margin-bottom: 1.4rem;">
+              Plataforma web desenvolvida para um professor de Física, marcando o início dos projetos freelances em 2025.
+            </p>
+            <span class="editorial-metric-pill">Plataforma Educacional Entregue</span>
           </article>
 
         </div>
@@ -314,147 +487,219 @@
   </main>
 
   <!-- ====================================================================
-       PAINEL FLUTUANTE: DESIGN & PERSONALITY LAB (EM TEMPO REAL)
-       Permite ao usuário alternar temas, 4 paletas curadas ou cores manuais
+       PAINEL FLUTUANTE DE EDIÇÃO AO VIVO (COM IDS PARA ESCOLHA RÁPIDA)
        ==================================================================== -->
   <button class="lab-floating-trigger" id="labTrigger" title="Atalho: Tecla D ou L">
-    <svg class="cheshire-smile-icon" viewBox="0 0 24 24">
+    <svg viewBox="0 0 24 24">
       <path d="M4 10c2 4 6 7 8 7s6-3 8-7"/>
-      <path d="M7 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm10 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+      <circle cx="8" cy="7" r="1.5" fill="currentColor"/>
+      <circle cx="16" cy="7" r="1.5" fill="currentColor"/>
     </svg>
-    <span>Design Lab</span>
+    <span>Lab de Opções (D)</span>
   </button>
 
   <div class="lab-drawer-overlay" id="labOverlay"></div>
 
   <aside class="lab-drawer" id="labDrawer">
     <header class="lab-header">
-      <div class="lab-title-group">
-        <svg class="cheshire-smile-icon" viewBox="0 0 24 24">
-          <path d="M4 10c2 4 6 7 8 7s6-3 8-7"/>
-          <path d="M7 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm10 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-        </svg>
-        <div>
-          <h3 class="lab-title">Design & Personality Lab</h3>
-          <div class="lab-subtitle">Altere paletas e visual em tempo real</div>
-        </div>
+      <div>
+        <h3 class="lab-title">Painel de Decisão Ao Vivo</h3>
+        <div class="lab-subtitle">Teste cada ID na tela e me envie seus favoritos</div>
       </div>
       <button class="lab-close-btn" id="labCloseBtn" title="Fechar (ESC)">✕</button>
     </header>
 
+    <!-- Barra com os IDs atualmente ativos para copiar com 1 clique -->
+    <div class="lab-active-ids-bar">
+      <span class="lab-ids-code" id="activeIdsCode">PAL-01 | DARK | TXT-01 | CASE-01 | PART-01 | LUPA-MD</span>
+      <button class="lab-copy-ids-btn" id="copyActiveIdsBtn">Copiar IDs</button>
+    </div>
+
     <div class="lab-body">
-      
-      <!-- 1. Modo de Tema -->
+
+      <!-- 1. ANIMAÇÃO DO PRELOADER DO GATO RISONHO -->
       <div>
-        <div class="lab-section-title">Modo de Exibição</div>
-        <div class="lab-mode-grid">
-          <button class="lab-mode-btn" data-lab-mode="light">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            Claro
+        <div class="lab-group-title">
+          <span>1. Loader do Gato Risonho (LOADER-01)</span>
+        </div>
+        <button class="btn btn-primary" id="replayLoaderBtn" style="width: 100%; padding: 11px;">
+          ▶️ Reproduzir Sorriso & Levitação Agora
+        </button>
+      </div>
+
+      <!-- 2. PALETAS DE ALTO CONTRASTE (PAL-01 A PAL-04) -->
+      <div>
+        <div class="lab-group-title">
+          <span>2. Paleta de Cores (ID: PAL)</span>
+        </div>
+        <div class="lab-options-grid">
+          <button class="lab-option-btn active" data-lab-palette="PAL-01">
+            <span class="opt-id-tag">PAL-01</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Minh Pham Signature</span>
+              <span class="opt-desc">Preto #0D0D0D, Creme #B7AB98 e Laranja #EB5939</span>
+            </div>
+            <div class="palette-dots">
+              <span class="p-dot" style="background:#0d0d0d"></span>
+              <span class="p-dot" style="background:#b7ab98"></span>
+              <span class="p-dot" style="background:#eb5939"></span>
+            </div>
           </button>
-          <button class="lab-mode-btn" data-lab-mode="dark">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            Escuro
+
+          <button class="lab-option-btn" data-lab-palette="PAL-02">
+            <span class="opt-id-tag">PAL-02</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Cheshire Bioluminescente</span>
+              <span class="opt-desc">Breu Noturno, Turquesa #00E5FF e Roxo Místico</span>
+            </div>
+            <div class="palette-dots">
+              <span class="p-dot" style="background:#070a10"></span>
+              <span class="p-dot" style="background:#00e5ff"></span>
+              <span class="p-dot" style="background:#a855f7"></span>
+            </div>
           </button>
-          <button class="lab-mode-btn active" data-lab-mode="system">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            Sistema
+
+          <button class="lab-option-btn" data-lab-palette="PAL-03">
+            <span class="opt-id-tag">PAL-03</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Editorial #F0EDE8 & Roxo/Laranja</span>
+              <span class="opt-desc">Areia #F0EDE8, Ônix, Roxo #9333EA e Laranja</span>
+            </div>
+            <div class="palette-dots">
+              <span class="p-dot" style="background:#f0ede8"></span>
+              <span class="p-dot" style="background:#9333ea"></span>
+              <span class="p-dot" style="background:#f97316"></span>
+            </div>
+          </button>
+
+          <button class="lab-option-btn" data-lab-palette="PAL-04">
+            <span class="opt-id-tag">PAL-04</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Healthtech Emerald & Azul</span>
+              <span class="opt-desc">Obsidiana, Esmeralda #10B981 e Azul Cobalto</span>
+            </div>
+            <div class="palette-dots">
+              <span class="p-dot" style="background:#060f14"></span>
+              <span class="p-dot" style="background:#10b981"></span>
+              <span class="p-dot" style="background:#0ea5e9"></span>
+            </div>
           </button>
         </div>
       </div>
 
-      <!-- 2. Paletas Curadas -->
+      <!-- 3. MODO DE LUZ (DARK / LIGHT / SYSTEM) -->
       <div>
-        <div class="lab-section-title">Paletas de Cores Disponíveis</div>
-        <div class="lab-palette-list">
-          
-          <!-- Paleta 1: Editorial #F0EDE8 -->
-          <div class="lab-palette-card active" data-lab-palette="editorial">
-            <div class="palette-info">
-              <h4>Editorial Elegante (#F0EDE8)</h4>
-              <span>Sóbrio, preto ônix e azul oceânico</span>
-            </div>
-            <div class="palette-swatches">
-              <span class="swatch" style="background: #f0ede8;"></span>
-              <span class="swatch" style="background: #1c1917;"></span>
-              <span class="swatch" style="background: #0c6fa0;"></span>
-            </div>
-          </div>
-
-          <!-- Paleta 2: Cheshire Wonderland -->
-          <div class="lab-palette-card" data-lab-palette="cheshire">
-            <div class="palette-info">
-              <h4>Cheshire Wonderland (Alter Ego)</h4>
-              <span>Roxo místico e Laranja vibrante</span>
-            </div>
-            <div class="palette-swatches">
-              <span class="swatch" style="background: #faf7fd;"></span>
-              <span class="swatch" style="background: #7c3aed;"></span>
-              <span class="swatch" style="background: #f97316;"></span>
-            </div>
-          </div>
-
-          <!-- Paleta 3: Healthtech & SUS -->
-          <div class="lab-palette-card" data-lab-palette="healthtech">
-            <div class="palette-info">
-              <h4>Healthtech & SUS (OftalmoPE)</h4>
-              <span>Azul cobalto e Verde esmeralda</span>
-            </div>
-            <div class="palette-swatches">
-              <span class="swatch" style="background: #f4f9fc;"></span>
-              <span class="swatch" style="background: #0284c7;"></span>
-              <span class="swatch" style="background: #059669;"></span>
-            </div>
-          </div>
-
-          <!-- Paleta 4: Tons Terrosos & Pastéis -->
-          <div class="lab-palette-card" data-lab-palette="earthy">
-            <div class="palette-info">
-              <h4>Tons Terrosos & Pastéis</h4>
-              <span>Terracota acolhedor, areia e sálvia</span>
-            </div>
-            <div class="palette-swatches">
-              <span class="swatch" style="background: #f2ede4;"></span>
-              <span class="swatch" style="background: #b45309;"></span>
-              <span class="swatch" style="background: #476655;"></span>
-            </div>
-          </div>
-
+        <div class="lab-group-title">
+          <span>3. Modo de Luz</span>
+        </div>
+        <div class="lab-segmented-row">
+          <button class="lab-seg-btn active" data-lab-mode="dark">ESCRO (DARK)</button>
+          <button class="lab-seg-btn" data-lab-mode="light">CLARO (#F0EDE8)</button>
+          <button class="lab-seg-btn" data-lab-mode="system">SISTEMA</button>
         </div>
       </div>
 
-      <!-- 3. Seletor Livre em Tempo Real -->
+      <!-- 4. FRASES DA LUPA REVELADORA NO HERO (TXT-01 A TXT-04) -->
       <div>
-        <div class="lab-section-title">Color Pickers Livres (Tempo Real)</div>
-        
-        <div class="lab-picker-row">
-          <label for="labBgColor">Cor de Fundo:</label>
-          <div class="lab-color-input-wrapper">
-            <span class="lab-color-val" id="labBgColorVal">#F5F2ED</span>
-            <input type="color" id="labBgColor" value="#f5f2ed">
-          </div>
+        <div class="lab-group-title">
+          <span>4. Frase Visível vs Segredo da Lupa (ID: TXT)</span>
         </div>
+        <div class="lab-options-grid">
+          <button class="lab-option-btn active" data-lab-txt="TXT-01">
+            <span class="opt-id-tag">TXT-01</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Sistemas Reais → Atalhos no Caos</span>
+              <span class="opt-desc">Lupa: "ACHANDO ATALHOS ONDE SÓ VIAM O CAOS"</span>
+            </div>
+          </button>
 
-        <div class="lab-picker-row">
-          <label for="labAccentColor">Cor de Destaque:</label>
-          <div class="lab-color-input-wrapper">
-            <span class="lab-color-val" id="labAccentColorVal">#0C6FA0</span>
-            <input type="color" id="labAccentColor" value="#0c6fa0">
-          </div>
+          <button class="lab-option-btn" data-lab-txt="TXT-02">
+            <span class="opt-id-tag">TXT-02</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Engenharia Sóbria → Gato Risonho</span>
+              <span class="opt-desc">Lupa: "UM GATO RISONHO HACKEANDO TODA A OPERAÇÃO"</span>
+            </div>
+          </button>
+
+          <button class="lab-option-btn" data-lab-txt="TXT-03">
+            <span class="opt-id-tag">TXT-03</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Horas em Segundos → Adeus 2010</span>
+              <span class="opt-desc">Lupa: "PORQUE DIGITAÇÃO BRAÇAL FICOU EM 2010"</span>
+            </div>
+          </button>
+
+          <button class="lab-option-btn" data-lab-txt="TXT-04">
+            <span class="opt-id-tag">TXT-04</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Ciência da Computação → Cheshire</span>
+              <span class="opt-desc">Lupa: "NEM TODO QUEM VAGUEIA ESTÁ PERDIDO"</span>
+            </div>
+          </button>
         </div>
       </div>
 
-      <!-- 4. Modo Cheshire Interativo -->
+      <!-- 5. LAYOUT DA SEÇÃO DE CASES (CASE-01 VS CASE-02) -->
       <div>
-        <div class="lab-section-title">Alter Ego & Easter Eggs</div>
-        <div class="lab-toggle-row">
-          <div class="toggle-label-group">
-            <strong>Modo Cheshire Ativo</strong>
-            <span>Frases inusitadas e micro-animações</span>
-          </div>
-          <label class="switch">
-            <input type="checkbox" id="labCheshireToggle">
-            <span class="slider"></span>
+        <div class="lab-group-title">
+          <span>5. Estilo dos Cases (ID: CASE)</span>
+        </div>
+        <div class="lab-options-grid">
+          <button class="lab-option-btn active" data-lab-case="CASE-01">
+            <span class="opt-id-tag">CASE-01</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Lista Editorial Minh Pham + Acordeão</span>
+              <span class="opt-desc">Tipografia monumental com revelação por lupa</span>
+            </div>
+          </button>
+
+          <button class="lab-option-btn" data-lab-case="CASE-02">
+            <span class="opt-id-tag">CASE-02</span>
+            <div class="opt-text-wrap">
+              <span class="opt-title">Bento Cards Flutuantes 3D</span>
+              <span class="opt-desc">Cards em levitação contínua + gaveta expansível</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- 6. PARTÍCULAS FLUTUANTES (PART-01 A PART-03) -->
+      <div>
+        <div class="lab-group-title">
+          <span>6. Partículas Flutuantes (ID: PART)</span>
+        </div>
+        <div class="lab-segmented-row">
+          <button class="lab-seg-btn active" data-lab-part="PART-01">PART-01 Orbes</button>
+          <button class="lab-seg-btn" data-lab-part="PART-02">PART-02 Rede</button>
+          <button class="lab-seg-btn" data-lab-part="PART-03">PART-03 Off</button>
+        </div>
+      </div>
+
+      <!-- 7. TAMANHO DA LUPA (LUPA-SM / MD / LG) -->
+      <div>
+        <div class="lab-group-title">
+          <span>7. Diâmetro da Lupa (ID: LUPA)</span>
+        </div>
+        <div class="lab-segmented-row">
+          <button class="lab-seg-btn" data-lab-lupa="LUPA-SM">LUPA-SM</button>
+          <button class="lab-seg-btn active" data-lab-lupa="LUPA-MD">LUPA-MD</button>
+          <button class="lab-seg-btn" data-lab-lupa="LUPA-LG">LUPA-LG</button>
+        </div>
+      </div>
+
+      <!-- 8. CORES LIVRES EM TEMPO REAL -->
+      <div>
+        <div class="lab-group-title">
+          <span>8. Ajuste Livre de Cores</span>
+        </div>
+        <div class="lab-picker-grid">
+          <label class="lab-picker-box">
+            <span>Fundo</span>
+            <input type="color" id="labBgColor" value="#0d0d0d">
+          </label>
+          <label class="lab-picker-box">
+            <span>Lupa / Destaque</span>
+            <input type="color" id="labAccentColor" value="#eb5939">
           </label>
         </div>
       </div>
@@ -462,24 +707,25 @@
     </div>
 
     <footer class="lab-footer">
-      <button class="lab-reset-btn" id="labResetBtn">Restaurar Padrões</button>
+      <button class="btn btn-outline btn-sm" id="labResetBtn" style="width: 100%;">
+        Restaurar Padrão Recomendado
+      </button>
     </footer>
   </aside>
 
   <!-- ====================================================================
-       MODAL DE VISUALIZAÇÃO DO CURRÍCULO
-       Visualização rápida e botão direto para download/impressão em PDF
+       MODAL DE VISUALIZAÇÃO & DOWNLOAD DO CURRÍCULO
        ==================================================================== -->
   <div class="modal-overlay" id="resumeModal">
     <div class="modal-content">
       <header class="modal-header">
         <div>
-          <h3 style="font-size: 1.15rem; font-weight: 800;">Currículo • Kauã Barbosa</h3>
-          <span style="font-size: 0.78rem; color: var(--text-muted);">Ciência da Computação (UPE) & Automação Hospitalar</span>
+          <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--text-bright);">Currículo • Kauã Vinicius</h3>
+          <span style="font-size: 0.76rem; color: var(--text-muted);">Ciência da Computação (UFAPE) & Automação Hospitalar</span>
         </div>
         <div style="display: flex; gap: 8px;">
           <a href="/cv.html" target="_blank" class="btn btn-primary btn-sm">
-            🖨️ Abrir Versão Imprimível / PDF
+            🖨️ Abrir PDF / A4
           </a>
           <button class="modal-close-btn" id="closeResumeModal">✕</button>
         </div>
@@ -487,50 +733,41 @@
 
       <div class="modal-body">
         <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 14px; margin-bottom: 16px;">
-          <h2 style="font-size: 1.3rem; margin-bottom: 4px;">Kauã Vinicius dos Santos Barbosa</h2>
-          <p style="font-size: 0.88rem; color: var(--accent-color); font-weight: 700;">Desenvolvedor de Software • RPA Hospitalar (SUS) • Ciência da Computação</p>
-          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">19 anos • Garanhuns - PE • kauavdsb.jobs@gmail.com • github.com/KauaVDSB</p>
+          <h2 style="font-size: 1.3rem; color: var(--text-bright); margin-bottom: 4px;">Kauã Vinicius dos Santos Barbosa</h2>
+          <p style="font-size: 0.88rem; color: var(--accent-color); font-weight: 700;">Desenvolvedor de Software • RPA Hospitalar (SUS) • Ciência da Computação (UFAPE)</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">19 anos • Garanhuns, PE • kauavdsb.jobs@gmail.com • github.com/KauaVDSB</p>
         </div>
 
         <div style="margin-bottom: 16px;">
-          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; text-transform: uppercase;">Big Numbers de Produção (OftalmoPE Tech)</h4>
-          <ul style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; list-style: disc; padding-left: 20px;">
-            <li><strong>+100 horas úteis salvas/mês</strong> em digitação braçal de faturamento SUS.</li>
-            <li><strong>FinalizaMV:</strong> Baixa cirúrgica no MV Soul reduzida de 85s para 0,65s (130x mais rápida) em 1.440 cirurgias/mês.</li>
-            <li><strong>SolicitaAPAC:</strong> Emissão de APACs reduzida de 80s para 1,10s (72x mais veloz) com validação contra glosas.</li>
-            <li><strong>ROI direto de folha:</strong> > R$ 2.501,75/mês gerados internamente.</li>
-            <li><strong>Capital SUS blindado:</strong> Mais de R$ 1,2 milhão/mês faturados com conformidade estrita e 100% LGPD local (Zero PII em nuvem).</li>
+          <h4 style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-bright); margin-bottom: 8px; text-transform: uppercase;">Impacto Real em Produção (OftalmoPE Tech)</h4>
+          <ul style="font-size: 0.86rem; color: var(--text-main); line-height: 1.65; list-style: disc; padding-left: 20px;">
+            <li><strong>4 ferramentas rápidas</strong> que salvam o faturamento hospitalar, devolvendo <strong>+100 horas úteis/mês</strong>.</li>
+            <li><strong>FinalizaMV:</strong> Baixa cirúrgica reduzida de 85s para <strong>0,65s</strong> (130x mais rápida) em 1.440 cirurgias/mês.</li>
+            <li><strong>SolicitaAPAC:</strong> Emissão de APACs reduzida de 80s para <strong>1,10s</strong> com trava preventiva contra glosas.</li>
+            <li><strong>Sentinel Hub:</strong> Governança 100% local (Zero PII em nuvem / LGPD) protegendo > R$ 1,2 milhão/mês no SUS.</li>
           </ul>
         </div>
 
         <div style="margin-bottom: 16px;">
-          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; text-transform: uppercase;">Formação & Conquistas</h4>
-          <ul style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; list-style: disc; padding-left: 20px;">
-            <li><strong>Bacharelado em Ciência da Computação:</strong> UPE (4º período atual, aprovado em 13º lugar Ampla Concorrência).</li>
-            <li><strong>Monitor de Ciência da Computação na UPE:</strong> Aprovado já no 2º período, monitor ativo até o presente.</li>
-            <li><strong>Licenciatura em Computação (UPE):</strong> Aprovado em 4º lugar (Ampla Concorrência).</li>
-            <li><strong>Técnico em Desenvolvimento de Sistemas:</strong> ETE Ariano Vilar Suassuna (concluído em 2024).</li>
-            <li><strong>Projetos FACEPE:</strong> 2 simultâneos (bolsista e voluntário - Arduino, telemetria de sensores e impressão 3D).</li>
+          <h4 style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-bright); margin-bottom: 8px; text-transform: uppercase;">Formação & Monitorias</h4>
+          <ul style="font-size: 0.86rem; color: var(--text-main); line-height: 1.65; list-style: disc; padding-left: 20px;">
+            <li><strong>Bacharelado em Ciência da Computação:</strong> UFAPE (4º período atual).</li>
+            <li><strong>Monitor de Ciência da Computação (UFAPE):</strong> Atuante desde o 2º período até o 4º período atual.</li>
+            <li><strong>Técnico em Desenvolvimento de Sistemas:</strong> ETE Ariano Vilar Suassuna (concluído em 2024, ex-monitor de Matemática).</li>
+            <li><strong>Extensão FACEPE:</strong> 2 projetos simultâneos (bolsista e voluntário) com Arduino, sensores e impressão 3D.</li>
           </ul>
         </div>
 
-        <div style="text-align: center; margin-top: 20px;">
+        <div style="text-align: center; margin-top: 22px;">
           <a href="/cv.html" target="_blank" class="btn btn-primary">
-            📄 Abrir Currículo Completo Formatado para A4 / Impressão
+            📄 Abrir Versão Completa para Impressão / Salvar PDF
           </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Script Modular (ES Modules nativo) -->
+  <!-- Orquestrador Modular ES Modules -->
   <script type="module" src="js/main.js"></script>
-  
-  <script>
-    // Evento rápido para botão Hero abrir o Design Lab
-    document.getElementById('labTriggerHero')?.addEventListener('click', () => {
-      document.getElementById('labTrigger')?.click();
-    });
-  </script>
 </body>
 </html>

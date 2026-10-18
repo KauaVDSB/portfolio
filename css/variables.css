@@ -1,211 +1,158 @@
 /* ==========================================================================
-   DESIGN TOKENS & CSS VARIABLES
-   Suporte a Temas (Light / Dark / System) e Paletas de Cores Personalizáveis
+   DESIGN TOKENS & CSS VARIABLES (MINH PHAM CONTRAST & CHESHIRE EDITION)
+   Paletas de Alto Contraste, Variáveis da Lupa Reveladora e Modos
    ========================================================================== */
 
 :root {
   /* Tipografia */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-display: 'Syne', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* Transições e Curvas */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Curvas de Animação e Física */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --transition-fast: 0.18s var(--ease-out);
-  --transition-base: 0.28s var(--ease-out);
-  --transition-slow: 0.45s var(--ease-out);
+  --ease-float: cubic-bezier(0.45, 0, 0.55, 1);
+  --transition-fast: 0.2s var(--ease-out-expo);
+  --transition-base: 0.4s var(--ease-out-expo);
+  --transition-slow: 0.7s var(--ease-out-expo);
 
-  /* Dimensões e Layout */
-  --container-max: 1200px;
-  --container-narrow: 860px;
-  --header-height: 72px;
-  --radius-xs: 4px;
+  /* Coordenadas Globais do Cursor / Lupa (atualizadas via JS a 60fps) */
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
+  --mask-size: 0px;
+  --lupa-radius: 320px;
+  --dot-size: 18px;
+
+  /* Dimensões */
+  --container-max: 1240px;
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 26px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
   --radius-full: 9999px;
 
-  /* PALETA 1: EDITORIAL ELEGANTE (DEFAULT) - Sóbria, refinada e moderna */
-  --pal-editorial-bg-light: #f5f2ed;
-  --pal-editorial-surface-light: #ffffff;
-  --pal-editorial-border-light: rgba(28, 25, 23, 0.1);
-  --pal-editorial-text-light: #1c1917;
-  --pal-editorial-muted-light: #78716c;
-  --pal-editorial-accent-light: #0c6fa0;
-  --pal-editorial-accent-glow-light: rgba(12, 111, 160, 0.15);
-
-  --pal-editorial-bg-dark: #0e1117;
-  --pal-editorial-surface-dark: #161b22;
-  --pal-editorial-border-dark: rgba(255, 255, 255, 0.08);
-  --pal-editorial-text-dark: #f0f6fc;
-  --pal-editorial-muted-dark: #8b949e;
-  --pal-editorial-accent-dark: #38bdf8;
-  --pal-editorial-accent-glow-dark: rgba(56, 189, 248, 0.18);
-
-  /* PALETA 2: CHESHIRE WONDERLAND - Alter ego inusitado (Roxo místico & Laranja vibrante) */
-  --pal-cheshire-bg-light: #faf7fd;
-  --pal-cheshire-surface-light: #ffffff;
-  --pal-cheshire-border-light: rgba(139, 92, 246, 0.18);
-  --pal-cheshire-text-light: #201335;
-  --pal-cheshire-muted-light: #7c6f8a;
-  --pal-cheshire-accent-light: #7c3aed;
-  --pal-cheshire-accent-sec-light: #ea580c;
-  --pal-cheshire-accent-glow-light: rgba(124, 58, 237, 0.18);
-
-  --pal-cheshire-bg-dark: #0d0914;
-  --pal-cheshire-surface-dark: #171124;
-  --pal-cheshire-border-dark: rgba(167, 139, 250, 0.14);
-  --pal-cheshire-text-dark: #f5f3ff;
-  --pal-cheshire-muted-dark: #a78bfa;
-  --pal-cheshire-accent-dark: #a855f7;
-  --pal-cheshire-accent-sec-dark: #f97316;
-  --pal-cheshire-accent-glow-dark: rgba(168, 85, 247, 0.25);
-
-  /* PALETA 3: HEALTHTECH & SUS - OftalmoPE, robustez e precisão médica (Azul & Esmeralda) */
-  --pal-health-bg-light: #f4f9fc;
-  --pal-health-surface-light: #ffffff;
-  --pal-health-border-light: rgba(12, 111, 160, 0.14);
-  --pal-health-text-light: #092c3e;
-  --pal-health-muted-light: #486581;
-  --pal-health-accent-light: #0284c7;
-  --pal-health-accent-sec-light: #059669;
-  --pal-health-accent-glow-light: rgba(2, 132, 199, 0.15);
-
-  --pal-health-bg-dark: #040d14;
-  --pal-health-surface-dark: #0a1926;
-  --pal-health-border-dark: rgba(56, 189, 248, 0.12);
-  --pal-health-text-dark: #f0fdf4;
-  --pal-health-muted-dark: #7dd3fc;
-  --pal-health-accent-dark: #38bdf8;
-  --pal-health-accent-sec-dark: #10b981;
-  --pal-health-accent-glow-dark: rgba(56, 189, 248, 0.22);
-
-  /* PALETA 4: TONS TERROSOS & PASTÉIS - Orgânica, acolhedora e atemporal */
-  --pal-earthy-bg-light: #f2ede4;
-  --pal-earthy-surface-light: #fbf9f5;
-  --pal-earthy-border-light: rgba(120, 85, 60, 0.14);
-  --pal-earthy-text-light: #2c221e;
-  --pal-earthy-muted-light: #7c6a5e;
-  --pal-earthy-accent-light: #b45309;
-  --pal-earthy-accent-sec-light: #476655;
-  --pal-earthy-accent-glow-light: rgba(180, 83, 9, 0.14);
-
-  --pal-earthy-bg-dark: #16120e;
-  --pal-earthy-surface-dark: #221c17;
-  --pal-earthy-border-dark: rgba(217, 119, 6, 0.15);
-  --pal-earthy-text-dark: #fbf7ee;
-  --pal-earthy-muted-dark: #b89d89;
-  --pal-earthy-accent-dark: #f59e0b;
-  --pal-earthy-accent-sec-dark: #6ee7b7;
-  --pal-earthy-accent-glow-dark: rgba(245, 158, 11, 0.2);
-
-  /* ESTADO ATIVO PADRÃO: Editorial Claro */
-  --bg-color: var(--pal-editorial-bg-light);
-  --surface-color: var(--pal-editorial-surface-light);
-  --surface-alt: #f0ede8;
-  --border-color: var(--pal-editorial-border-light);
-  --text-main: var(--pal-editorial-text-light);
-  --text-muted: var(--pal-editorial-muted-light);
-  --accent-color: var(--pal-editorial-accent-light);
-  --accent-secondary: #059669;
-  --accent-glow: var(--pal-editorial-accent-glow-light);
-
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+  /* ========================================================================
+     PAL-01: MINH PHAM SIGNATURE (DEFAULT)
+     Preto profundo (#0d0d0d), Creme quente (#b7ab98) e Laranja Coral (#eb5939)
+     ======================================================================== */
+  --bg-color: #0d0d0d;
+  --surface-color: #161616;
+  --surface-elevated: #1f1f1f;
+  --border-color: rgba(183, 171, 152, 0.14);
+  --text-main: #b7ab98;
+  --text-bright: #f4f0ea;
+  --text-muted: #7e766a;
+  --accent-color: #eb5939;
+  --accent-secondary: #f59e0b;
+  --accent-glow: rgba(235, 89, 57, 0.28);
+  --mask-bg: #eb5939;
+  --mask-text: #0d0d0d;
+  --particle-color: #eb5939;
+  --particle-sec: #b7ab98;
 }
 
-/* TEMA ESCURO (Dark Mode) */
-[data-theme="dark"] {
-  --bg-color: var(--pal-editorial-bg-dark);
-  --surface-color: var(--pal-editorial-surface-dark);
-  --surface-alt: #1a222d;
-  --border-color: var(--pal-editorial-border-dark);
-  --text-main: var(--pal-editorial-text-dark);
-  --text-muted: var(--pal-editorial-muted-dark);
-  --accent-color: var(--pal-editorial-accent-dark);
-  --accent-secondary: #10b981;
-  --accent-glow: var(--pal-editorial-accent-glow-dark);
-
-  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
+/* ==========================================================================
+   PAL-02: CHESHIRE BIOLUMINESCENTE (Inspirado na arte do Gato Risonho)
+   Breu Noturno (#070b12), Prata Suave (#d1d9e6), Turquesa (#00e5ff) & Roxo
+   ========================================================================== */
+[data-palette="PAL-02"] {
+  --bg-color: #070a10;
+  --surface-color: #0f1522;
+  --surface-elevated: #162033;
+  --border-color: rgba(0, 229, 255, 0.16);
+  --text-main: #c7d2e0;
+  --text-bright: #ffffff;
+  --text-muted: #6e829c;
+  --accent-color: #00e5ff;
+  --accent-secondary: #a855f7;
+  --accent-glow: rgba(0, 229, 255, 0.28);
+  --mask-bg: #00e5ff;
+  --mask-text: #06090e;
+  --particle-color: #00e5ff;
+  --particle-sec: #a855f7;
 }
 
-/* PALETA CHESHIRE (Claro & Escuro) */
-[data-palette="cheshire"] {
-  --bg-color: var(--pal-cheshire-bg-light);
-  --surface-color: var(--pal-cheshire-surface-light);
-  --surface-alt: #f3edf8;
-  --border-color: var(--pal-cheshire-border-light);
-  --text-main: var(--pal-cheshire-text-light);
-  --text-muted: var(--pal-cheshire-muted-light);
-  --accent-color: var(--pal-cheshire-accent-light);
-  --accent-secondary: var(--pal-cheshire-accent-sec-light);
-  --accent-glow: var(--pal-cheshire-accent-glow-light);
+/* ==========================================================================
+   PAL-03: EDITORIAL #F0EDE8 & ROXO/LARANJA
+   Base Creme Areia (#F0EDE8) ou Escuro Sóbrio, Preto Ônix, Roxo & Laranja
+   ========================================================================== */
+[data-palette="PAL-03"] {
+  --bg-color: #111015;
+  --surface-color: #1a1821;
+  --surface-elevated: #24212e;
+  --border-color: rgba(240, 237, 232, 0.14);
+  --text-main: #f0ede8;
+  --text-bright: #ffffff;
+  --text-muted: #968f87;
+  --accent-color: #9333ea;
+  --accent-secondary: #f97316;
+  --accent-glow: rgba(147, 51, 234, 0.3);
+  --mask-bg: #f97316;
+  --mask-text: #111015;
+  --particle-color: #f97316;
+  --particle-sec: #a855f7;
 }
 
-[data-palette="cheshire"][data-theme="dark"] {
-  --bg-color: var(--pal-cheshire-bg-dark);
-  --surface-color: var(--pal-cheshire-surface-dark);
-  --surface-alt: #221834;
-  --border-color: var(--pal-cheshire-border-dark);
-  --text-main: var(--pal-cheshire-text-dark);
-  --text-muted: var(--pal-cheshire-muted-dark);
-  --accent-color: var(--pal-cheshire-accent-dark);
-  --accent-secondary: var(--pal-cheshire-accent-sec-dark);
-  --accent-glow: var(--pal-cheshire-accent-glow-dark);
+/* ==========================================================================
+   PAL-04: HEALTHTECH EMERALD & AZUL
+   Obsidiana (#061014), Gelo (#d8e6ed), Esmeralda (#10b981) & Azul (#0ea5e9)
+   ========================================================================== */
+[data-palette="PAL-04"] {
+  --bg-color: #060f14;
+  --surface-color: #0c1b24;
+  --surface-elevated: #132836;
+  --border-color: rgba(16, 185, 129, 0.16);
+  --text-main: #cbdde6;
+  --text-bright: #ffffff;
+  --text-muted: #6b8899;
+  --accent-color: #10b981;
+  --accent-secondary: #0ea5e9;
+  --accent-glow: rgba(16, 185, 129, 0.28);
+  --mask-bg: #10b981;
+  --mask-text: #040b0e;
+  --particle-color: #10b981;
+  --particle-sec: #38bdf8;
 }
 
-/* PALETA HEALTHTECH (Claro & Escuro) */
-[data-palette="healthtech"] {
-  --bg-color: var(--pal-health-bg-light);
-  --surface-color: var(--pal-health-surface-light);
-  --surface-alt: #e9f2f7;
-  --border-color: var(--pal-health-border-light);
-  --text-main: var(--pal-health-text-light);
-  --text-muted: var(--pal-health-muted-light);
-  --accent-color: var(--pal-health-accent-light);
-  --accent-secondary: var(--pal-health-accent-sec-light);
-  --accent-glow: var(--pal-health-accent-glow-light);
+/* ==========================================================================
+   MODO CLARO (LIGHT MODE) ADAPTADO COM ALTO CONTRASTE EDITORIAL (#F0EDE8)
+   ========================================================================== */
+[data-theme="light"] {
+  --bg-color: #f0ede8;
+  --surface-color: #ffffff;
+  --surface-elevated: #e6e1da;
+  --border-color: rgba(20, 20, 19, 0.12);
+  --text-main: #1c1917;
+  --text-bright: #000000;
+  --text-muted: #68625b;
+  --mask-text: #ffffff;
 }
 
-[data-palette="healthtech"][data-theme="dark"] {
-  --bg-color: var(--pal-health-bg-dark);
-  --surface-color: var(--pal-health-surface-dark);
-  --surface-alt: #0e2233;
-  --border-color: var(--pal-health-border-dark);
-  --text-main: var(--pal-health-text-dark);
-  --text-muted: var(--pal-health-muted-dark);
-  --accent-color: var(--pal-health-accent-dark);
-  --accent-secondary: var(--pal-health-accent-sec-dark);
-  --accent-glow: var(--pal-health-accent-glow-dark);
+[data-theme="light"][data-palette="PAL-01"] {
+  --accent-color: #eb5939;
+  --mask-bg: #eb5939;
+  --mask-text: #0d0d0d;
 }
 
-/* PALETA TONS TERROSOS (Claro & Escuro) */
-[data-palette="earthy"] {
-  --bg-color: var(--pal-earthy-bg-light);
-  --surface-color: var(--pal-earthy-surface-light);
-  --surface-alt: #e8e0d4;
-  --border-color: var(--pal-earthy-border-light);
-  --text-main: var(--pal-earthy-text-light);
-  --text-muted: var(--pal-earthy-muted-light);
-  --accent-color: var(--pal-earthy-accent-light);
-  --accent-secondary: var(--pal-earthy-accent-sec-light);
-  --accent-glow: var(--pal-earthy-accent-glow-light);
+[data-theme="light"][data-palette="PAL-02"] {
+  --accent-color: #0284c7;
+  --accent-secondary: #7c3aed;
+  --mask-bg: #0f172a;
+  --mask-text: #00e5ff;
+  --particle-color: #0284c7;
+  --particle-sec: #7c3aed;
 }
 
-[data-palette="earthy"][data-theme="dark"] {
-  --bg-color: var(--pal-earthy-bg-dark);
-  --surface-color: var(--pal-earthy-surface-dark);
-  --surface-alt: #2c231c;
-  --border-color: var(--pal-earthy-border-dark);
-  --text-main: var(--pal-earthy-text-dark);
-  --text-muted: var(--pal-earthy-muted-dark);
-  --accent-color: var(--pal-earthy-accent-dark);
-  --accent-secondary: var(--pal-earthy-accent-sec-dark);
-  --accent-glow: var(--pal-earthy-accent-glow-dark);
+[data-theme="light"][data-palette="PAL-03"] {
+  --accent-color: #7c3aed;
+  --accent-secondary: #ea580c;
+  --mask-bg: #7c3aed;
+  --mask-text: #f0ede8;
+}
+
+[data-theme="light"][data-palette="PAL-04"] {
+  --accent-color: #059669;
+  --accent-secondary: #0284c7;
+  --mask-bg: #059669;
+  --mask-text: #ffffff;
 }

@@ -1,17 +1,17 @@
 /**
- * Módulo de Gerenciamento de Temas e Paletas
- * Suporta Modos Claro/Escuro/Sistema e Paletas Curadas com persistência em localStorage
+ * Módulo de Gerenciamento de Temas e Paletas (PAL-01 a PAL-04)
+ * Padrão inicial: Modo Escuro de Alto Contraste + PAL-01 (Minh Pham Signature)
  */
 
-const STORAGE_THEME_KEY = 'kaua_portfolio_theme';
-const STORAGE_PALETTE_KEY = 'kaua_portfolio_palette';
+const STORAGE_THEME_KEY = 'kaua_portfolio_theme_v2';
+const STORAGE_PALETTE_KEY = 'kaua_portfolio_palette_v2';
 
 export class ThemeManager {
   constructor() {
-    this.currentTheme = localStorage.getItem(STORAGE_THEME_KEY) || 'system';
-    this.currentPalette = localStorage.getItem(STORAGE_PALETTE_KEY) || 'editorial';
+    this.currentTheme = localStorage.getItem(STORAGE_THEME_KEY) || 'dark';
+    this.currentPalette = localStorage.getItem(STORAGE_PALETTE_KEY) || 'PAL-01';
     this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     this.init();
   }
 
@@ -19,10 +19,9 @@ export class ThemeManager {
     this.applyTheme(this.currentTheme);
     this.applyPalette(this.currentPalette);
 
-    // Escuta mudanças de tema no sistema operacional
     this.mediaQuery.addEventListener('change', (e) => {
       if (this.currentTheme === 'system') {
-        this.updateSystemTheme(e.matches);
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
       }
     });
   }
@@ -31,48 +30,33 @@ export class ThemeManager {
     this.currentTheme = theme;
     localStorage.setItem(STORAGE_THEME_KEY, theme);
     this.applyTheme(theme);
-    this.notifyThemeChange();
+    this.notifyChange();
   }
 
   applyTheme(theme) {
     const root = document.documentElement;
     if (theme === 'system') {
-      const isDark = this.mediaQuery.matches;
-      root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      root.setAttribute('data-theme', this.mediaQuery.matches ? 'dark' : 'light');
     } else {
       root.setAttribute('data-theme', theme);
     }
   }
 
-  updateSystemTheme(isDark) {
-    const root = document.documentElement;
-    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  setPalette(paletteId) {
+    this.currentPalette = paletteId;
+    localStorage.setItem(STORAGE_PALETTE_KEY, paletteId);
+    this.applyPalette(paletteId);
+    this.notifyChange();
   }
 
-  setPalette(palette) {
-    this.currentPalette = palette;
-    localStorage.setItem(STORAGE_PALETTE_KEY, palette);
-    this.applyPalette(palette);
-    this.notifyThemeChange();
+  applyPalette(paletteId) {
+    document.documentElement.setAttribute('data-palette', paletteId);
   }
 
-  applyPalette(palette) {
-    const root = document.documentElement;
-    root.setAttribute('data-palette', palette);
-  }
-
-  getEffectiveTheme() {
-    if (this.currentTheme === 'system') {
-      return this.mediaQuery.matches ? 'dark' : 'light';
-    }
-    return this.currentTheme;
-  }
-
-  notifyThemeChange() {
+  notifyChange() {
     window.dispatchEvent(new CustomEvent('portfolio:theme-changed', {
       detail: {
         theme: this.currentTheme,
-        effectiveTheme: this.getEffectiveTheme(),
         palette: this.currentPalette
       }
     }));

@@ -1,6 +1,5 @@
 /* ==========================================================================
-   BASE & RESET MODERNO
-   Tipografia Fluida com clamp(), Acessibilidade, Layout Base
+   BASE, PRELOADER CHESHIRE, CURSOR PERSEGUIDOR & ANIMAÇÕES DE LEVITAÇÃO
    ========================================================================== */
 
 *, *::before, *::after {
@@ -19,58 +18,237 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg-color);
   color: var(--text-main);
-  line-height: 1.6;
+  line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition: background-color 0.5s ease, color 0.5s ease;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Background Texture Sutil (Noise / Grid dinâmico) */
-body::before {
+/* Vinheta Misteriosa de Profundidade */
+body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: 0.35;
+  background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
 }
 
-/* Tipografia Fluida */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+[data-theme="light"] body::after {
+  background: radial-gradient(circle at 50% 50%, transparent 65%, rgba(0, 0, 0, 0.08) 100%);
+}
+
+/* ==========================================================================
+   PRELOADER DO GATO RISONHO (CHESHIRE AMIGÁVEL & LEVITAÇÃO)
+   ========================================================================== */
+.cheshire-preloader {
+  position: fixed;
+  inset: 0;
+  background-color: #07090d;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: clip-path 1.1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease, visibility 0.8s ease;
+  clip-path: circle(150% at 50% 50%);
+}
+
+.cheshire-preloader.loaded {
+  clip-path: circle(0% at 50% 50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cheshire-loader-stage {
+  position: relative;
+  width: 260px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: cheshire-levitate-spin 4.2s ease-in-out infinite;
+}
+
+@keyframes cheshire-levitate-spin {
+  0% {
+    transform: translateY(12px) rotate(-5deg) scale(0.94);
+  }
+  50% {
+    transform: translateY(-14px) rotate(5deg) scale(1.04);
+  }
+  100% {
+    transform: translateY(12px) rotate(-5deg) scale(0.94);
+  }
+}
+
+.cheshire-loader-svg {
+  width: 230px;
+  height: 150px;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px var(--accent-glow));
+}
+
+/* Olhos Amigáveis e Brilhantes do Gato */
+.cheshire-eye {
+  opacity: 0;
+  transform-origin: center;
+  animation: eye-awaken 2.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cheshire-eye.right {
+  animation-delay: 0.18s;
+}
+
+@keyframes eye-awaken {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.05) scaleX(0.8);
+  }
+  25% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
+  65% {
+    transform: scaleY(1) scaleX(1);
+  }
+  72% {
+    /* Piscada amigável */
+    transform: scaleY(0.08) scaleX(1.06);
+  }
+  80%, 100% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+/* Sorriso Amigável que se abre devagar */
+.cheshire-smile-path {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: smile-draw-slow 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+.cheshire-smile-dimple {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: dimple-appear 0.6s ease 1.9s forwards;
+}
+
+@keyframes smile-draw-slow {
+  0% {
+    stroke-dashoffset: 320;
+    opacity: 0.2;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes dimple-appear {
+  to {
+    opacity: 0.9;
+  }
+}
+
+.preloader-caption {
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--text-main);
-  line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  opacity: 0;
+  animation: caption-fade 1.2s ease 0.7s forwards;
 }
 
-h1 {
-  font-size: clamp(2.4rem, 5vw + 1rem, 4.4rem);
+@keyframes caption-fade {
+  to {
+    opacity: 0.75;
+  }
 }
 
-h2 {
-  font-size: clamp(1.8rem, 3vw + 0.8rem, 2.8rem);
+/* ==========================================================================
+   BOLINHA PERSEGUIDORA DO MOUSE (ESTILO MINH PHAM)
+   ========================================================================== */
+.cursor-follower-ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 900;
+  transform: translate3d(calc(var(--cursor-x) - 50%), calc(var(--cursor-y) - 50%), 0);
+  transition: width 0.35s var(--ease-out-expo), height 0.35s var(--ease-out-expo), opacity 0.25s ease, background-color 0.3s ease;
+  box-shadow: 0 0 20px var(--accent-glow);
+  will-change: transform, width, height;
 }
 
-h3 {
-  font-size: clamp(1.3rem, 2vw + 0.5rem, 1.8rem);
+/* Quando entra numa área de Lupa Reveladora, a bolinha externa some pois o clip-path assume a lupa */
+body.is-mask-hovering .cursor-follower-ball {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
 }
 
-p {
-  color: var(--text-muted);
-  font-size: clamp(1rem, 0.4vw + 0.9rem, 1.15rem);
-  max-width: 68ch;
+/* ==========================================================================
+   ANIMAÇÕES DE FLUTUAÇÃO / LEVITAÇÃO CONTÍNUA
+   ========================================================================== */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(0.6deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-0.6deg);
+  }
+}
+
+.floating-element {
+  animation: float-slow 6s var(--ease-float) infinite;
+}
+
+.floating-element-delayed {
+  animation: float-reverse 7.5s var(--ease-float) infinite;
+}
+
+/* Utilitários de Layout */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4.5rem);
+  position: relative;
+  z-index: 5;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast);
 }
 
 button {
@@ -78,118 +256,27 @@ button {
   cursor: pointer;
   border: none;
   background: none;
-  outline: none;
 }
 
 ul, ol {
   list-style: none;
 }
 
-img, svg {
-  display: block;
-  max-width: 100%;
-}
-
-/* Seleção de Texto */
 ::selection {
   background: var(--accent-color);
-  color: #ffffff;
+  color: var(--mask-text);
 }
 
-/* Scrollbar Customizada */
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 7px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
-  border-radius: var(--radius-full);
-  border: 2px solid var(--bg-color);
+  border-radius: 99px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-color);
-}
-
-/* Utilitários de Layout */
-.container {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: clamp(1.2rem, 3vw, 2.5rem);
-  padding-right: clamp(1.2rem, 3vw, 2.5rem);
-}
-
-.container-narrow {
-  width: 100%;
-  max-width: var(--container-narrow);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: clamp(1.2rem, 3vw, 2.5rem);
-  padding-right: clamp(1.2rem, 3vw, 2.5rem);
-}
-
-.section-spacing {
-  padding-top: clamp(4rem, 8vw, 8rem);
-  padding-bottom: clamp(4rem, 8vw, 8rem);
-  position: relative;
-}
-
-.section-header {
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
-}
-
-.section-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-color);
-  background: var(--accent-glow);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border-color);
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  margin-bottom: 1rem;
-}
-
-.section-desc {
-  font-size: 1.15rem;
-  line-height: 1.6;
-}
-
-/* Grids Flexíveis */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: clamp(1.5rem, 2.5vw, 2.5rem);
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: clamp(1.2rem, 2vw, 2rem);
-}
-
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: clamp(1rem, 1.8vw, 1.8rem);
-}
-
-/* Foco Acessível (Keyboard a11y) */
-:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 3px;
 }

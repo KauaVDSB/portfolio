@@ -1,278 +1,294 @@
 /* ==========================================================================
-   COMPONENTES UI & MICROINTERAÇÕES
-   Botões, Badges, Cards com Glassmorphism, Modais, Navbar
+   MOLDURA HUD FIXA (MINH PHAM FRAME), LUPA REVELADORA & COMPONENTES
    ========================================================================== */
 
-/* Navbar Flutuante */
-.site-header {
+/* 1. Moldura Fixa nos 4 Cantos (Inspirada em minhpham.design) */
+.hud-frame {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--header-height);
-  z-index: 1000;
+  inset: 0;
+  pointer-events: none;
+  z-index: 800;
+  padding: clamp(1.2rem, 3vw, 2.6rem);
   display: flex;
-  align-items: center;
-  transition: all var(--transition-base);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: rgba(var(--bg-color), 0.75);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.site-header.scrolled {
-  box-shadow: var(--shadow-sm);
-  background: var(--surface-color);
-  opacity: 0.96;
-}
-
-.nav-wrapper {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.hud-row-top,
+.hud-row-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
 }
 
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
+.hud-row-bottom {
+  align-items: flex-end;
 }
 
-.brand-symbol {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-color);
-  color: #ffffff;
+/* Canto Superior Esquerdo: Emblema do Gato Minimalista */
+.hud-brand {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.cat-emblem-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--text-main);
+  color: var(--bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  font-size: 1.05rem;
-  box-shadow: 0 4px 12px var(--accent-glow);
-  transition: transform var(--transition-base);
+  transition: transform 0.45s var(--ease-out-expo), background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
-.nav-brand:hover .brand-symbol {
-  transform: rotate(-8deg) scale(1.08);
+.hud-brand:hover .cat-emblem-circle {
+  transform: rotate(-12deg) scale(1.1);
+  background-color: var(--accent-color);
+  color: var(--mask-text);
+  box-shadow: 0 0 25px var(--accent-glow);
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+.cat-emblem-svg {
+  width: 28px;
+  height: 28px;
 }
 
-.nav-link {
-  font-size: 0.92rem;
-  font-weight: 600;
+.hud-brand-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--text-muted);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.hud-brand:hover .hud-brand-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Canto Superior Direito: Navegação Vertical Minimalista */
+.hud-nav {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.hud-nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 3px 0;
   position: relative;
-  padding: 6px 0;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
-.nav-link:hover, .nav-link.active {
-  color: var(--text-main);
+.hud-nav-link:hover,
+.hud-nav-link.active {
+  color: var(--text-bright);
+  transform: translateX(-4px);
 }
 
-.nav-link::after {
+.hud-nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: var(--accent-color);
-  transition: width var(--transition-fast);
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+/* Canto Inferior Esquerdo: Ícones Sociais Verticais */
+.hud-socials {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.hud-social-btn {
+  color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease-out-expo);
+  border: 1px solid transparent;
+}
+
+.hud-social-btn:hover {
+  color: var(--accent-color);
+  border-color: var(--border-color);
+  background: var(--surface-color);
+  transform: translateY(-3px) scale(1.1);
+}
+
+.hud-social-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   2. SISTEMA DE LUPA REVELADORA (HOVER MASK REVEAL - ESTILO MINH PHAM)
+   ========================================================================== */
+.mask-reveal-container {
+  position: relative;
+  cursor: none;
+  user-select: none;
+}
+
+.public-layer {
+  position: relative;
+  z-index: 2;
   width: 100%;
 }
 
-.nav-actions {
+.secret-mask-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-color: var(--mask-bg);
+  color: var(--mask-text);
+  pointer-events: none;
+  /* A máscara circular recorta a camada secreta exatamente onde o cursor passa */
+  clip-path: circle(var(--local-mask-size, 0px) at var(--local-x, 50%) var(--local-y, 50%));
+  transition: background-color 0.3s ease, color 0.3s ease;
+  will-change: clip-path;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: inherit;
 }
 
-/* Botões */
+/* Garante que textos dentro da máscara assumam o alto contraste escuro */
+.secret-mask-layer *,
+.secret-mask-layer h1,
+.secret-mask-layer h2,
+.secret-mask-layer h3,
+.secret-mask-layer p,
+.secret-mask-layer span {
+  color: var(--mask-text) !important;
+  -webkit-text-fill-color: var(--mask-text) !important;
+}
+
+/* Dica de Interação Flutuante (Lupa) */
+.lupa-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-color);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(6px);
+}
+
+.lupa-hint-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* ==========================================================================
+   3. BOTÕES & CONTROLES ELEGANTES
+   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.95rem;
-  padding: 12px 24px;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 24px;
   border-radius: var(--radius-full);
-  transition: all var(--transition-base);
-  text-decoration: none;
-  white-space: nowrap;
+  transition: all 0.35s var(--ease-out-expo);
+  cursor: pointer;
   position: relative;
-  overflow: hidden;
+  z-index: 10;
 }
 
 .btn-primary {
   background: var(--accent-color);
-  color: #ffffff !important;
-  box-shadow: 0 4px 16px var(--accent-glow);
+  color: var(--mask-text);
+  box-shadow: 0 6px 24px var(--accent-glow);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--accent-glow);
-  filter: brightness(1.08);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 32px var(--accent-glow);
 }
 
-.btn-secondary {
-  background: var(--surface-color);
+.btn-outline {
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text-main);
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
 }
 
-.btn-secondary:hover {
+.btn-outline:hover {
   border-color: var(--accent-color);
-  color: var(--accent-color);
-  transform: translateY(-2px);
-}
-
-.btn-cheshire {
-  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
-  color: #ffffff !important;
-  box-shadow: 0 4px 20px var(--accent-glow);
-}
-
-.btn-cheshire:hover {
-  transform: translateY(-2px) scale(1.02);
-  filter: brightness(1.1);
+  color: var(--text-bright);
+  transform: translateY(-3px);
 }
 
 .btn-sm {
-  padding: 8px 16px;
-  font-size: 0.85rem;
+  padding: 9px 16px;
+  font-size: 0.74rem;
 }
 
-.btn-lg {
-  padding: 15px 32px;
-  font-size: 1.05rem;
-}
-
-.btn-icon-only {
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Badges e Status */
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  box-shadow: var(--shadow-sm);
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #10b981;
-  position: relative;
-}
-
-.status-dot::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 2px solid #10b981;
-  opacity: 0.75;
-  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-}
-
-@keyframes pulse-ring {
-  0% { transform: scale(0.6); opacity: 0.9; }
-  100% { transform: scale(2.2); opacity: 0; }
-}
-
-/* Cards com Glassmorphism */
-.glass-card {
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 2.5vw, 2.2rem);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-card:hover {
-  border-color: var(--accent-color);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
-.glass-card:hover::before {
-  opacity: 1;
-}
-
-/* Tag Pills */
-.tag-pill {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  font-family: var(--font-mono);
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  background: var(--surface-alt);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-}
-
-/* Modal Overlay & Container */
+/* ==========================================================================
+   4. MODAL DE CURRÍCULO
+   ========================================================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 2000;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(12px);
+  z-index: 2500;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   opacity: 0;
   visibility: hidden;
-  transition: all var(--transition-base);
+  transition: all 0.35s var(--ease-out-expo);
 }
 
 .modal-overlay.active {
@@ -283,15 +299,14 @@
 .modal-content {
   background: var(--surface-color);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  max-width: 900px;
+  border-radius: var(--radius-lg);
+  max-width: 820px;
   width: 100%;
-  max-height: 90vh;
+  max-height: 88vh;
   overflow-y: auto;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  transform: scale(0.95) translateY(20px);
-  transition: transform var(--transition-base);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75);
+  transform: scale(0.94) translateY(20px);
+  transition: transform 0.35s var(--ease-out-expo);
 }
 
 .modal-overlay.active .modal-content {
@@ -315,16 +330,16 @@
   height: 36px;
   border-radius: 50%;
   border: 1px solid var(--border-color);
+  color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
-  transition: all var(--transition-fast);
+  transition: all 0.25s ease;
 }
 
 .modal-close-btn:hover {
-  background: var(--surface-alt);
-  color: var(--text-main);
+  background: var(--accent-color);
+  color: var(--mask-text);
   transform: rotate(90deg);
 }
 
@@ -332,48 +347,11 @@
   padding: 28px;
 }
 
-/* Responsividade Mobile Navbar */
-.mobile-nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  width: 32px;
-  height: 32px;
-  justify-content: center;
-  align-items: center;
-}
-
-.mobile-nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--text-main);
-  transition: all var(--transition-fast);
-}
-
-@media (max-width: 860px) {
-  .mobile-nav-toggle {
-    display: flex;
+@media (max-width: 768px) {
+  .hud-socials {
+    display: none;
   }
-  .nav-links {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    background: var(--surface-color);
-    border-bottom: 1px solid var(--border-color);
-    flex-direction: column;
-    padding: 24px;
-    gap: 1.5rem;
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: all var(--transition-base);
-  }
-  .nav-links.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-    box-shadow: var(--shadow-md);
+  .hud-frame {
+    padding: 1rem 1.2rem;
   }
 }

@@ -83,7 +83,6 @@
       padding: 32px 38px;
     }
 
-    /* Cabeçalho do CV */
     .cv-header {
       border-bottom: 2px solid var(--primary);
       padding-bottom: 14px;
@@ -128,7 +127,6 @@
       font-weight: 600;
     }
 
-    /* Seções */
     .section-title {
       font-size: 9.8pt;
       font-weight: 800;
@@ -139,12 +137,8 @@
       padding-bottom: 3px;
       margin-top: 16px;
       margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    /* Itens de Experiência e Formação */
     .entry-item {
       margin-bottom: 12px;
     }
@@ -192,7 +186,6 @@
       margin-bottom: 3px;
     }
 
-    /* Callout de Métricas / Big Numbers */
     .metrics-highlight-strip {
       background: var(--gain-green-bg);
       border: 1px solid #a7f3d0;
@@ -220,7 +213,6 @@
       margin-top: 2px;
     }
 
-    /* Competências em Grid */
     .skills-cv-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -269,33 +261,29 @@
   </div>
 
   <main class="cv-container">
-    
-    <!-- CABEÇALHO -->
     <header class="cv-header">
       <div>
         <h1 class="cv-title-name">Kauã Vinicius dos Santos Barbosa</h1>
         <div class="cv-headline">Desenvolvedor de Software • RPA & Automação Hospitalar • Ciência da Computação</div>
         <div class="cv-subline">
-          19 anos • Foco em desenvolvimento de sistemas de alta eficiência, arquitetura escalável e impacto real.
+          19 anos • Foco em sistemas de alta eficiência, eliminação de gargalos operacionais e impacto real.
         </div>
       </div>
       <div class="cv-contact-block">
         <div>Garanhuns, PE • Brasil</div>
         <div>kauavdsb.jobs@gmail.com</div>
         <div><a href="https://github.com/KauaVDSB" target="_blank">github.com/KauaVDSB</a></div>
-        <div>Bacharelado em Ciência da Computação (UPE)</div>
+        <div>Bacharelado em Ciência da Computação (UFAPE)</div>
       </div>
     </header>
 
-    <!-- RESUMO PROFISSIONAL -->
     <section>
       <div class="section-title">Resumo Profissional</div>
       <p class="entry-details">
-        Estudante de <strong>Ciência da Computação na Universidade de Pernambuco (UPE)</strong> no 4º período e <strong>Técnico em Desenvolvimento de Sistemas</strong> (ETE-AVS). Possui histórico comprovado de concepção e entrega de automações de missão crítica no setor de saúde suplementar e SUS (Hospital de Olhos OftalmoPE), com esteira RPA gerando mais de <strong>100 horas úteis salvas por mês</strong>, redução de 130x no tempo de digitação cirúrgica e blindagem de mais de <strong>R$ 1,2 milhão mensais</strong> em faturamento hospitalar. Experiência em projetos de extensão FACEPE com hardware e IoT, monitorias acadêmicas e desenvolvimento de soluções web com foco em código limpo, LGPD e alto ROI.
+        Estudante de <strong>Bacharelado em Ciência da Computação na UFAPE</strong> (4º período) e <strong>Técnico em Desenvolvimento de Sistemas</strong> (ETE-AVS). Histórico comprovado na concepção e entrega de automações de missão crítica na saúde (Hospital de Olhos OftalmoPE), onde apenas 4 ferramentas ultrarrápidas geram mais de <strong>100 horas úteis salvas por mês</strong>, reduzem o tempo de baixa cirúrgica em 130x e blindam mais de <strong>R$ 1,2 milhão mensais</strong> no faturamento SUS. Experiência em monitorias acadêmicas (UFAPE e ETE), projetos de extensão FACEPE e desenvolvimento web.
       </p>
     </section>
 
-    <!-- EXPERIÊNCIA PROFISSIONAL & CASES -->
     <section>
       <div class="section-title">Experiência Profissional & Cases de Impacto</div>
 
@@ -307,11 +295,11 @@
         <div class="entry-org">Hospital de Olhos OftalmoPE (Filial SUS Garanhuns) & Axymos Tecnologia</div>
         <div class="entry-details">
           <ul>
-            <li>Idealizou, projetou e implementou por iniciativa própria a esteira <strong>OftalmoPE Tech</strong> de automação de faturamento SUS e gestão hospitalar.</li>
+            <li>Idealizou e desenvolveu de forma autônoma a suíte <strong>OftalmoPE Tech</strong> (4 robôs + painel de governança), eliminando gargalos severos no faturamento SUS.</li>
             <li><strong>FinalizaMV:</strong> Baixa cirúrgica no MV Soul reduzida de 85 segundos para <strong>0,65 segundo</strong> (130x mais rápida) em 1.440 cirurgias/mês.</li>
-            <li><strong>SolicitaAPAC:</strong> Emissão de APACs junto à SES-PE otimizada de 80s para <strong>1,10s</strong> com validação automática de regras anti-glosa (1.315 laudos/mês).</li>
-            <li><strong>SolicitaMV & OpenLEA:</strong> Abertura prévia em lote de guias ambulatoriais e indexação ergonômica de laudos monovalentes.</li>
-            <li><strong>Sentinel Hub:</strong> Painel de governança técnica e auditoria local, assegurando 100% de conformidade com a LGPD (<strong>Zero PII em nuvem</strong>) e rastreabilidade total.</li>
+            <li><strong>SolicitaAPAC:</strong> Emissão de APACs junto à SES-PE otimizada de 80s para <strong>1,10s</strong> com validação preventiva contra glosas (1.315 laudos/mês).</li>
+            <li><strong>SolicitaMV & OpenLEA:</strong> Abertura em lote de 1.666 solicitações/mês e indexação ergonômica de 1.350 laudos/mês.</li>
+            <li><strong>Sentinel Hub:</strong> Governança técnica 100% local (<strong>Zero PII em nuvem / LGPD</strong>) e rastreabilidade completa de lotes.</li>
           </ul>
         </div>
 
@@ -342,12 +330,11 @@
         </div>
         <div class="entry-org">Atuação Autônoma</div>
         <div class="entry-details">
-          Desenvolvimento de plataforma web de conteúdo e artigos científicos para professor de física, integrando arquitetura responsiva, modularização e experiência de leitura otimizada.
+          Desenvolvimento de plataforma web educacional para professor de física, com arquitetura responsiva e publicação dinâmica.
         </div>
       </div>
     </section>
 
-    <!-- MONITORIAS & PROJETOS ACADÊMICOS -->
     <section>
       <div class="section-title">Monitorias Acadêmicas & Extensão Científica</div>
 
@@ -356,9 +343,9 @@
           <div class="entry-role">Monitor Acadêmico de Ciência da Computação</div>
           <div class="entry-date">2025 - Presente (2º ao 4º Período)</div>
         </div>
-        <div class="entry-org">Universidade de Pernambuco (UPE)</div>
+        <div class="entry-org">Universidade Federal do Agreste de Pernambuco (UFAPE)</div>
         <div class="entry-details">
-          Aprovado para monitoria já no 2º período letivo por mérito acadêmico. Auxílio a discentes no aprendizado de algoritmos, lógica de programação e resolução de problemas computacionais complexos.
+          Aprovado como monitor no 2º período e atuante até o 4º período atual, auxiliando discentes em algoritmos, estruturação lógica e resolução de problemas computacionais.
         </div>
       </div>
 
@@ -369,7 +356,7 @@
         </div>
         <div class="entry-org">Fundação de Amparo à Ciência e Tecnologia de Pernambuco (FACEPE) / ETE-AVS</div>
         <div class="entry-details">
-          Desenvolvimento de sistemas embarcados com Arduino, rotinas automatizadas para leitura e telemetria de sensores de dados e prototipagem física com manufatura aditiva (Impressão 3D).
+          Sistemas embarcados com Arduino, automações com leitura de dados de sensores e prototipagem em Impressão 3D.
         </div>
       </div>
 
@@ -380,39 +367,22 @@
         </div>
         <div class="entry-org">Escola Técnica Estadual Ariano Vilar Suassuna (ETE-AVS)</div>
         <div class="entry-details">
-          Orientação a turmas em tópicos avançados de matemática preparatória para vestibulares e raciocínio lógico analítico.
+          Mentoria de turmas em matemática e raciocínio lógico analítico.
         </div>
       </div>
     </section>
 
-    <!-- PROJETOS PÚBLICOS DE DESTAQUE -->
     <section>
-      <div class="section-title">Projetos Open Source em Destaque</div>
-
-      <div class="entry-item">
-        <div class="entry-header">
-          <div class="entry-role">Sistema de Apadrinhamento de Calouros • UFAPE ADM</div>
-          <div class="entry-date">GitHub Público</div>
-        </div>
-        <div class="entry-org">Universidade Federal do Agreste de Pernambuco (UFAPE)</div>
-        <div class="entry-details">
-          Plataforma web para pareamento de calouros e veteranos mentores no curso de Administração da UFAPE. Código disponível em: <a href="https://github.com/KauaVDSB/sistema-apadrinhamento-ufape-adm" target="_blank">github.com/KauaVDSB/sistema-apadrinhamento-ufape-adm</a>.
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMAÇÃO & APROVAÇÕES -->
-    <section>
-      <div class="section-title">Formação Acadêmica & Conquistas</div>
+      <div class="section-title">Formação Acadêmica</div>
 
       <div class="entry-item">
         <div class="entry-header">
           <div class="entry-role">Bacharelado em Ciência da Computação</div>
           <div class="entry-date">2025 - 2028 (Em andamento • 4º período)</div>
         </div>
-        <div class="entry-org">Universidade de Pernambuco (UPE)</div>
+        <div class="entry-org">Universidade Federal do Agreste de Pernambuco (UFAPE)</div>
         <div class="entry-details">
-          <strong>Aprovado em 13º lugar (Ampla Concorrência)</strong>. Também aprovado em <strong>4º lugar (Ampla Concorrência)</strong> em Licenciatura em Computação (UPE).
+          Aprovado em 13º lugar (Ampla Concorrência) na UFAPE; também aprovado em 4º lugar (Ampla Concorrência) em Licenciatura em Computação na UPE.
         </div>
       </div>
 
@@ -422,36 +392,30 @@
           <div class="entry-date">Concluído em 2024</div>
         </div>
         <div class="entry-org">Escola Técnica Estadual Ariano Vilar Suassuna (ETE-AVS)</div>
-        <div class="entry-details">
-          Formação em programação estruturada e orientada a objetos, bancos de dados relacionais e modelagem de software.
-        </div>
       </div>
     </section>
 
-    <!-- COMPETÊNCIAS -->
     <section>
-      <div class="section-title">Arsenal de Habilidades & Ferramentas</div>
-
+      <div class="section-title">Arsenal de Habilidades</div>
       <div class="skills-cv-grid">
         <div class="skill-cv-block">
-          <strong>Linguagens & Tecnologias:</strong>
-          <span>Python, JavaScript (ES6+), TypeScript, C, SQL, HTML5 Semântico, CSS3 Moderno (Tokens & Grid).</span>
+          <strong>Linguagens & Web:</strong>
+          <span>Python, JavaScript (ES6+), TypeScript, C, SQL, HTML5 Semântico, CSS3 Moderno.</span>
         </div>
         <div class="skill-cv-block">
-          <strong>Automação & Integração:</strong>
-          <span>PyAutoGUI, Selenium, RPA Corporativo, MV Soul ERP, APACnet / SES-PE, Sentinel Hub, REST APIs.</span>
+          <strong>Automação & RPA:</strong>
+          <span>PyAutoGUI, Selenium, MV Soul ERP, APACnet / SES-PE, Sentinel Hub, REST APIs.</span>
         </div>
         <div class="skill-cv-block">
-          <strong>Hardware & Embarcados:</strong>
-          <span>Arduino, Sensores e Aquisição de Dados, Impressão 3D (Modelagem e Fatiamento).</span>
+          <strong>Hardware & Prototipagem:</strong>
+          <span>Arduino, Sensores, Aquisição de Dados, Impressão 3D.</span>
         </div>
         <div class="skill-cv-block">
-          <strong>Governança & Negócios:</strong>
-          <span>Conformidade LGPD (Zero PII em Nuvem), Métricas de ROI, Auditoria de Lotes, Git/GitHub, Metodologias Ágeis.</span>
+          <strong>Governança & Processos:</strong>
+          <span>Conformidade LGPD Local (Zero PII em Nuvem), Métricas de ROI, Git/GitHub.</span>
         </div>
       </div>
     </section>
-
   </main>
 
 </body>
