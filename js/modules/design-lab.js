@@ -160,7 +160,7 @@ export class DesignLab {
       const code = this.getActiveIdsString();
       navigator.clipboard?.writeText(code);
       const orig = this.copyIdsBtn.textContent;
-      this.copyIdsBtn.textContent = '✓ Copiado!';
+      this.copyIdsBtn.textContent = 'Copiado!';
       setTimeout(() => {
         this.copyIdsBtn.textContent = orig;
       }, 1800);
